@@ -5,17 +5,11 @@
  * @format
  */
 
+import Onboarding from '@screens/Onboarding';
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
 
 const App = () => {
-  return (
-    <SafeAreaView>
-      <View>
-        <Text>Test</Text>
-      </View>
-    </SafeAreaView>
-  );
+  return <Onboarding />;
 };
 
 export default App;
