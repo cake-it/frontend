@@ -1,13 +1,9 @@
 import React from 'react';
-import { registerStyles } from 'styles/register/styles';
-import { Text, View } from 'react-native';
 import Dash from '@assets/images/register/dash.svg';
 import Dots from '@assets/images/register/dots.svg';
-
-interface BirthGenderProps {
-  birth: string;
-  gender: string;
-}
+import { BirthGenderProps } from 'types/register/types';
+import { registerStyles } from 'styles/register/styles';
+import { Text, View } from 'react-native';
 
 const BirthGenderView = ({ birth, gender }: BirthGenderProps) => {
   return (
