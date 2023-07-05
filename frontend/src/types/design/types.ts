@@ -3,4 +3,6 @@ export interface OnboardingButtonProps {
   textColor: string;
   borderColor?: string;
   backgroundColor: string;
+  disabled?: boolean;
+  onPress?: () => void;
 }
