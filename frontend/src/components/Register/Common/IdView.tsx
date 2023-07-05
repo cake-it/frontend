@@ -2,7 +2,9 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { registerStyles } from 'styles/register/styles';
 
-const IdView = ({ id }: { id: string }) => {
+const IdView = () => {
+  const id = 'test123'; // 상태관리로 받아오기
+
   return (
     <View style={registerStyles.marginTop}>
       <Text style={registerStyles.infoText}>아이디</Text>

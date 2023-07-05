@@ -1,11 +1,15 @@
 import React from 'react';
 import Dash from '@assets/images/register/dash.svg';
 import Dots from '@assets/images/register/dots.svg';
-import { BirthGenderProps } from 'types/register/types';
 import { registerStyles } from 'styles/register/styles';
 import { Text, View } from 'react-native';
 
-const BirthGenderView = ({ birth, gender }: BirthGenderProps) => {
+const BirthGenderView = () => {
+  // 상태관리로 받아오기
+
+  const birth = '990910';
+  const gender = '1';
+
   return (
     <View style={registerStyles.marginTop}>
       <Text style={registerStyles.infoText}>생년월일/성별</Text>

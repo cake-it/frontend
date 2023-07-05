@@ -7,6 +7,8 @@ const OnboardingButton = ({
   textColor,
   borderColor,
   backgroundColor,
+  disabled,
+  onPress,
 }: OnboardingButtonProps) => {
   const buttonStyle = {
     ...styles.button,
@@ -22,7 +24,7 @@ const OnboardingButton = ({
 
   return (
     // 인터렉션 아직 구현되지 않았음
-    <TouchableOpacity style={buttonStyle}>
+    <TouchableOpacity onPress={onPress} disabled={disabled} style={buttonStyle}>
       <Text style={buttonText}>{text}</Text>
     </TouchableOpacity>
   );
