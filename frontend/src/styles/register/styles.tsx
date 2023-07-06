@@ -38,4 +38,26 @@ export const registerStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  CheckTextView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 12,
+    gap: 6,
+  },
+  checkText: {
+    fontFamily: theme.medium,
+    fontSize: 14,
+  },
+  button: {
+    width: '100%',
+    paddingVertical: 20,
+    backgroundColor: theme.disableButtonGray,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontFamily: theme.medium,
+    fontSize: 14,
+    textAlign: 'center',
+    color: theme.disableTextGray,
+  },
 });
