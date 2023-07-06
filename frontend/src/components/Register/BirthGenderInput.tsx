@@ -11,14 +11,14 @@ import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
 import Dash from '@assets/images/register/dash.svg';
 import Dots from '@assets/images/register/dots.svg';
-import Password from '@assets/images/register/password.svg';
-import IdView from './Common/IdView';
 import InfoLayout from './InfoLayout';
 
 // 모든값 입력되면 다음 페이지로 navigate
 const BirthGenderInput = () => {
   const [userBirth, setUserBirth] = useState('');
   const [userGender, setUserGender] = useState('');
+  const [birthFocused, setBirthFocused] = useState(false);
+  const [genderFocused, setGenderFocused] = useState(false);
 
   const birthInputRef = useRef<TextInput>(null);
   const genderInputRef = useRef<TextInput>(null);
@@ -26,7 +26,7 @@ const BirthGenderInput = () => {
   // 스타일 분기 코드
   const birthInputStyle = [
     styles.input,
-    userBirth !== '' && {
+    birthFocused && {
       borderBottomColor: theme.pink,
       borderBottomWidth: 2,
     },
@@ -34,7 +34,7 @@ const BirthGenderInput = () => {
 
   const genderInputStyle = [
     styles.input,
-    userGender !== '' && {
+    genderFocused && {
       borderBottomColor: theme.pink,
       borderBottomWidth: 2,
     },
@@ -56,13 +56,15 @@ const BirthGenderInput = () => {
     <KeyboardAvoidingView style={globalStyles.buttonFlex} behavior="padding">
       <View style={registerStyles.inputContainer}>
         <Text style={registerStyles.inputLabel}>생일과 성별을 알려주세요</Text>
-        <Text style={registerStyles.infoText}>생년월일/성별</Text>
 
         <View style={registerStyles.inputFlex}>
           <TextInput
             ref={birthInputRef}
             style={birthInputStyle}
             maxLength={6}
+            onFocus={() => setBirthFocused(true)}
+            onBlur={() => setBirthFocused(false)}
+            placeholder="생년월일 입력"
             keyboardType="number-pad"
             placeholderTextColor={theme.placeholderTextColor}
             onChangeText={(value) => setUserBirth(value)}
@@ -76,6 +78,8 @@ const BirthGenderInput = () => {
             ref={genderInputRef}
             style={[genderInputStyle, { textAlign: 'center', width: '10%' }]}
             maxLength={1}
+            onFocus={() => setGenderFocused(true)}
+            onBlur={() => setGenderFocused(false)}
             keyboardType="number-pad"
             placeholderTextColor={theme.placeholderTextColor}
             onChangeText={(value) => setUserGender(value)}

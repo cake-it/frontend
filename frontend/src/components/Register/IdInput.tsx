@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import { theme } from 'styles/theme';
 import { idRegex } from 'utils/regex';
-import Pass from '@assets/images/register/pass.svg';
-import Fail from '@assets/images/register/fail.svg';
 import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
+import Pass from '@assets/images/register/pass.svg';
+import Fail from '@assets/images/register/fail.svg';
 
 const IdInput = () => {
   const [userId, setUserId] = useState('');
@@ -20,10 +20,17 @@ const IdInput = () => {
   const [checkText, setCheckText] = useState('');
   const [isValidId, setIsValidId] = useState(false);
 
+  const idInputRef = useRef<TextInput>(null);
+
   // 아이디 입력 시 정규식 검사
   useEffect(() => {
     setIsValidId(idRegex.test(userId));
   }, [userId]);
+
+  // 최초 렌더링시 input focus
+  useEffect(() => {
+    idInputRef.current?.focus();
+  }, []);
 
   // 중복확인 (임시)
   const handleDuplicationCheck = () => {
@@ -34,24 +41,24 @@ const IdInput = () => {
   // 스타일 분기 코드
   const inputStyle = [
     styles.idInput,
-    userId !== '' && {
+    isFocused && {
       borderBottomColor: theme.pink,
       borderBottomWidth: 2,
     },
   ];
 
   const buttonStyle = [
-    styles.button,
+    registerStyles.button,
     userId !== '' && isValidId && { backgroundColor: theme.pink },
   ];
 
   const duplicateTextStyle = [
-    styles.buttonText,
+    registerStyles.buttonText,
     userId !== '' && isValidId && { color: theme.white },
   ];
 
   const checkTextStyle = [
-    styles.checkText,
+    registerStyles.checkText,
     !isValidId && { color: '#FF8080' },
     isValidId && { color: '#4EBE4B' },
   ];
@@ -62,8 +69,10 @@ const IdInput = () => {
         <Text style={registerStyles.inputLabel}>아이디를 만들어 주세요</Text>
 
         <TextInput
+          ref={idInputRef}
           style={inputStyle}
           maxLength={15}
+          autoCapitalize="none"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder="아이디 입력"
@@ -72,7 +81,7 @@ const IdInput = () => {
           value={userId}
         />
         {userId !== '' && (
-          <View style={styles.CheckTextView}>
+          <View style={registerStyles.CheckTextView}>
             <Text style={checkTextStyle}>
               {checkText ? checkText : '영문, 숫자 포함 7-12자'}
             </Text>
@@ -101,27 +110,5 @@ const styles = StyleSheet.create({
     borderBottomColor: '#E8E8E8',
     borderBottomWidth: 1,
     paddingBottom: 5,
-  },
-  button: {
-    width: '100%',
-    paddingVertical: 20,
-    backgroundColor: theme.disableButtonGray,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: theme.medium,
-    fontSize: 14,
-    textAlign: 'center',
-    color: theme.disableTextGray,
-  },
-  CheckTextView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 12,
-    gap: 6,
-  },
-  checkText: {
-    fontFamily: theme.medium,
-    fontSize: 14,
   },
 });
