@@ -7,7 +7,7 @@ export type Props = NativeStackScreenProps<StackParamList, 'CheckScreen'>;
 
 const CheckScreen = ({ navigation, route }: Props) => {
   return (
-    <Layout>
+    <Layout check>
       <Check navigation={navigation} route={route} />
     </Layout>
   );
