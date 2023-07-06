@@ -5,11 +5,11 @@
  * @format
  */
 
-import Onboarding from '@screens/Onboarding';
 import React from 'react';
+import MainRoute from 'routes/MainRoute';
 
 const App = () => {
-  return <Onboarding />;
+  return <MainRoute />;
 };
 
 export default App;
