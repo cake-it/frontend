@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Checkbox from '@components/design/CheckBox';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { registerStyles } from 'styles/register/styles';
 import { checkBoxOptions } from 'utils/textRenderData/register';
 import InfoLayout from './InfoLayout';
@@ -16,7 +16,31 @@ const Check = ({ navigation }: Props) => {
     navigation.navigate('ProfileScreen');
   };
 
-  return (
+  // 안드로이드일 경우 scrollView 설정을 위해
+  return Platform.OS === 'android' ? (
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={registerStyles.inputContainer}>
+        <Text style={registerStyles.inputLabel}>
+          서비스 이용 목적을 알려주세요
+        </Text>
+
+        <View style={styles.checkBoxContainer}>
+          {checkBoxOptions.map((option, index) => (
+            <Checkbox
+              key={index}
+              label={option}
+              onPress={() => handleCheck(index)}
+              checked={checkedIndex === index}
+            />
+          ))}
+        </View>
+
+        <InfoLayout index={3} />
+
+        <View style={{ marginBottom: 40 }} />
+      </View>
+    </ScrollView>
+  ) : (
     <View style={registerStyles.inputContainer}>
       <Text style={registerStyles.inputLabel}>
         서비스 이용 목적을 알려주세요
