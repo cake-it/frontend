@@ -28,7 +28,7 @@ const IdInput = ({ navigation }: Props) => {
     setIsValidId(idRegex.test(userId));
   }, [userId]);
 
-  // 최초 렌더링시 input focus
+  // 최초 렌더링시 input focus (안드로이드 버그 확인으로 setTimeout() 코드 구현)
   useEffect(() => {
     setTimeout(() => idInputRef.current?.focus(), 0);
   }, []);
