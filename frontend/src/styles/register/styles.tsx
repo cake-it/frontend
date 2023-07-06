@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { theme } from 'styles/theme';
+
+// 안드로이드 스타일 분기 추가
+const bottom = Platform.OS === 'android' ? 22 : 0;
 
 export const registerStyles = StyleSheet.create({
   inputContainer: {
@@ -53,6 +56,7 @@ export const registerStyles = StyleSheet.create({
     paddingVertical: 20,
     backgroundColor: theme.disableButtonGray,
     justifyContent: 'center',
+    marginBottom: bottom,
   },
   buttonText: {
     fontFamily: theme.medium,
