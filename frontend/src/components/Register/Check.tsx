@@ -16,31 +16,7 @@ const Check = ({ navigation }: Props) => {
     navigation.navigate('ProfileScreen');
   };
 
-  // 안드로이드일 경우 scrollView 설정을 위해
-  return Platform.OS === 'android' ? (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={registerStyles.inputContainer}>
-        <Text style={registerStyles.inputLabel}>
-          서비스 이용 목적을 알려주세요
-        </Text>
-
-        <View style={styles.checkBoxContainer}>
-          {checkBoxOptions.map((option, index) => (
-            <Checkbox
-              key={index}
-              label={option}
-              onPress={() => handleCheck(index)}
-              checked={checkedIndex === index}
-            />
-          ))}
-        </View>
-
-        <InfoLayout index={3} />
-
-        <View style={{ marginBottom: 40 }} />
-      </View>
-    </ScrollView>
-  ) : (
+  const renderContent = () => (
     <View style={registerStyles.inputContainer}>
       <Text style={registerStyles.inputLabel}>
         서비스 이용 목적을 알려주세요
@@ -59,6 +35,16 @@ const Check = ({ navigation }: Props) => {
 
       <InfoLayout index={3} />
     </View>
+  );
+
+  // 안드로이드일 경우 scrollView 설정을 위해
+  return Platform.OS === 'android' ? (
+    <ScrollView showsVerticalScrollIndicator={false}>
+      {renderContent()}
+      <View style={{ marginBottom: 40 }} />
+    </ScrollView>
+  ) : (
+    renderContent()
   );
 };
 
