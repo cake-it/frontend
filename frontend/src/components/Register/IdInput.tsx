@@ -75,6 +75,8 @@ const IdInput = ({ navigation }: Props) => {
           style={inputStyle}
           maxLength={15}
           autoCapitalize="none"
+          autoComplete="off"
+          autoCorrect={false}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder="아이디 입력"
