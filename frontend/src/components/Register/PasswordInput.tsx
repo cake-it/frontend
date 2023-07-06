@@ -15,7 +15,13 @@ import Password from '@assets/images/register/passwordDot.svg';
 import OffPassword from '@assets/images/register/unPasswordDot.svg';
 import Fail from '@assets/images/register/fail.svg';
 
-const PasswordInput = ({ confirm }: { confirm?: boolean }) => {
+interface PasswordScreenProps {
+  confirm?: boolean;
+  navigation: any;
+  route: any;
+}
+
+const PasswordInput = ({ navigation, confirm }: PasswordScreenProps) => {
   const [userPassword, setUserPassword] = useState('');
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [errorText, setErrorText] = useState('');
@@ -30,7 +36,9 @@ const PasswordInput = ({ confirm }: { confirm?: boolean }) => {
   // password state 싸이클관리
   useEffect(() => {
     if (userPassword.length === 6) {
-      confirm ? confirmPassword() : null; // 생성 시 다음 페이지 navigate
+      confirm
+        ? confirmPassword()
+        : navigation.navigate('PasswordConfirmScreen'); // 생성 시 다음 페이지 navigate
     }
     // 컨펌 받고 수정 or fix
     if (userPassword.length !== 6) {
@@ -53,7 +61,7 @@ const PasswordInput = ({ confirm }: { confirm?: boolean }) => {
     // 임시 구현
     userPassword !== '123456'
       ? setErrorText('비밀번호가 일치하지 않습니다')
-      : null; // 다음 페이지로
+      : navigation.navigate('BirthGenderScreen'); // 다음 페이지로
   };
 
   // *비밀번호 확인 페이지 - 불일치시 비밀번호 초기화
@@ -123,6 +131,7 @@ const PasswordInput = ({ confirm }: { confirm?: boolean }) => {
         {/* 비밀번호 확인 페이지* - 일치 하지 않을 경우 안보이게  */}
         {errorText ? null : <IdView />}
       </View>
+
       {errorText && (
         <TouchableOpacity
           onPress={handleResetPassword}

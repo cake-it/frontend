@@ -12,9 +12,10 @@ import { registerStyles } from 'styles/register/styles';
 import Dash from '@assets/images/register/dash.svg';
 import Dots from '@assets/images/register/dots.svg';
 import InfoLayout from './InfoLayout';
+import { Props } from '@screens/registerScreens/BirthGenderScreen';
 
 // 모든값 입력되면 다음 페이지로 navigate
-const BirthGenderInput = () => {
+const BirthGenderInput = ({ navigation }: Props) => {
   const [userBirth, setUserBirth] = useState('');
   const [userGender, setUserGender] = useState('');
   const [birthFocused, setBirthFocused] = useState(false);
@@ -51,6 +52,13 @@ const BirthGenderInput = () => {
       genderInputRef.current?.focus();
     }
   }, [userBirth]);
+
+  // 생년월일 6자리 + 성별 모두 입력시 다음 page로
+  useEffect(() => {
+    if (userBirth.length === 6 && userGender.length === 1) {
+      navigation.navigate('CheckScreen');
+    }
+  }, [userBirth, userGender]);
 
   return (
     <KeyboardAvoidingView style={globalStyles.buttonFlex} behavior="padding">

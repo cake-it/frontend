@@ -4,8 +4,11 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import LogoText from '@assets/images/common/logoText.svg';
 import OnboardingButton from '@components/Register/Common/OnboardingButton';
 import { globalStyles } from 'styles/global';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from 'types/routes/types';
+type Props = NativeStackScreenProps<StackParamList, 'OnboardingScreen'>;
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }: Props) => {
   return (
     <View style={globalStyles.buttonFlex}>
       <SafeAreaView style={globalStyles.container}>
@@ -16,6 +19,7 @@ const Onboarding = () => {
 
       <View style={globalStyles.buttonView}>
         <OnboardingButton
+          onPress={() => navigation.navigate('RegisterRoute')}
           backgroundColor={theme.pink}
           textColor={theme.white}
           text="60초만에 회원가입"

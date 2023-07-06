@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import Password from '@assets/images/register/password.svg';
-import BirthGenderView from './Common/BirthGenderView';
-import IdView from './Common/IdView';
 import Checkbox from '@components/design/CheckBox';
 import { StyleSheet, Text, View } from 'react-native';
 import { registerStyles } from 'styles/register/styles';
 import { checkBoxOptions } from 'utils/textRenderData/register';
 import InfoLayout from './InfoLayout';
+import { Props } from '@screens/registerScreens/CheckScreen';
 
-const Check = () => {
+const Check = ({ navigation }: Props) => {
   const [checkedIndex, setCheckedIndex] = useState(-1);
 
   // 체크박스 선택 하나만
   // 체크박스 선택시 다음 페이지로 navigate
   const handleCheck = (index: number) => {
     setCheckedIndex(index);
+    navigation.navigate('ProfileScreen');
   };
 
   return (

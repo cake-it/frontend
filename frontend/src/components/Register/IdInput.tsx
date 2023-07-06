@@ -13,8 +13,9 @@ import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
 import Pass from '@assets/images/register/pass.svg';
 import Fail from '@assets/images/register/fail.svg';
+import { Props } from '@screens/registerScreens/IdScreen';
 
-const IdInput = () => {
+const IdInput = ({ navigation }: Props) => {
   const [userId, setUserId] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [checkText, setCheckText] = useState('');
@@ -29,12 +30,13 @@ const IdInput = () => {
 
   // 최초 렌더링시 input focus
   useEffect(() => {
-    idInputRef.current?.focus();
+    setTimeout(() => idInputRef.current?.focus(), 0);
   }, []);
 
   // 중복확인 (임시)
   const handleDuplicationCheck = () => {
     // API 성공시 -> 다음 화면 넘어가기
+    navigation.navigate('PasswordScreen');
     // API 실패시 버튼 disabled && 에러 텍스트
   };
 
@@ -91,7 +93,7 @@ const IdInput = () => {
       </View>
 
       {isFocused && (
-        <TouchableOpacity style={buttonStyle}>
+        <TouchableOpacity onPress={handleDuplicationCheck} style={buttonStyle}>
           <Text style={duplicateTextStyle}>중복체크</Text>
         </TouchableOpacity>
       )}

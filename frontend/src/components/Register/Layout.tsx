@@ -13,11 +13,13 @@ import Indicator from '@components/Register/Common/Indicator';
 import OnboardingButton from '@components/Register/Common/OnboardingButton';
 
 interface LayoutProps {
+  navigation: any;
+  route: any;
   children: ReactNode;
   checked?: boolean;
 }
 
-const Layout = ({ children, checked }: LayoutProps) => {
+const Layout = ({ children, checked, navigation }: LayoutProps) => {
   // 프로필 설정 화면일경우 scrollView 사용을 위해 TouchableWithoutFeedback 제거
   return checked ? (
     <View style={globalStyles.buttonFlex}>
@@ -32,7 +34,7 @@ const Layout = ({ children, checked }: LayoutProps) => {
         <View style={styles.splitLine} />
         <OnboardingButton
           disabled={!checked}
-          onPress={() => console.log('다음 페이지')}
+          onPress={() => navigation.navigate('WelcomeScreen')}
           backgroundColor={checked ? theme.pink : theme.disableButtonGray}
           textColor={checked ? theme.white : theme.disableTextGray}
           text="완료하기"
