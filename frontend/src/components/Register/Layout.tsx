@@ -13,15 +13,16 @@ import Indicator from '@components/Register/Common/Indicator';
 import OnboardingButton from '@components/Register/Common/OnboardingButton';
 
 interface LayoutProps {
-  navigation: any;
-  route: any;
+  navigation?: any;
+  route?: any;
   children: ReactNode;
-  checked?: boolean;
+  profile?: boolean; // profile is checked
+  check?: boolean; // checkScreen is checked
 }
 
-const Layout = ({ children, checked, navigation }: LayoutProps) => {
-  // 프로필 설정 화면일경우 scrollView 사용을 위해 TouchableWithoutFeedback 제거
-  return checked ? (
+const Layout = ({ children, profile, check, navigation }: LayoutProps) => {
+  // 프로필 설정, 서비스 체크 화면일 경우 scrollView 사용을 위해 TouchableWithoutFeedback 제거
+  return profile || check ? (
     <View style={globalStyles.buttonFlex}>
       <SafeAreaView style={globalStyles.container}>
         <Header />
@@ -32,16 +33,27 @@ const Layout = ({ children, checked, navigation }: LayoutProps) => {
 
       <View style={globalStyles.buttonView}>
         <View style={styles.splitLine} />
-        <OnboardingButton
-          disabled={!checked}
-          onPress={() => navigation.navigate('WelcomeScreen')}
-          backgroundColor={checked ? theme.pink : theme.disableButtonGray}
-          textColor={checked ? theme.white : theme.disableTextGray}
-          text="완료하기"
-        />
+        {/* 버튼 스타일 분기처리 */}
+        {check ? (
+          <OnboardingButton
+            disabled
+            backgroundColor={theme.disableButtonGray}
+            textColor={theme.disableTextGray}
+            text="완료하기"
+          />
+        ) : (
+          <OnboardingButton
+            disabled={false}
+            onPress={() => navigation.navigate('WelcomeScreen')}
+            backgroundColor={theme.pink}
+            textColor={theme.white}
+            text="완료하기"
+          />
+        )}
       </View>
     </View>
   ) : (
+    // default button
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={globalStyles.buttonFlex}>
         <SafeAreaView style={globalStyles.container}>
@@ -54,10 +66,9 @@ const Layout = ({ children, checked, navigation }: LayoutProps) => {
         <View style={globalStyles.buttonView}>
           <View style={styles.splitLine} />
           <OnboardingButton
-            disabled={!checked}
-            onPress={() => console.log('다음 페이지')}
-            backgroundColor={checked ? theme.pink : theme.disableButtonGray}
-            textColor={checked ? theme.white : theme.disableTextGray}
+            disabled
+            backgroundColor={theme.disableButtonGray}
+            textColor={theme.disableTextGray}
             text="완료하기"
           />
         </View>
