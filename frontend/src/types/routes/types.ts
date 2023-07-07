@@ -2,6 +2,7 @@
 export enum RouteScreens {
   OnboardingScreen = 'OnboardingScreen',
   RegisterRoute = 'RegisterRoute',
+  LoginScreen = 'LoginScreen',
 }
 
 // Register routes
@@ -29,4 +30,6 @@ export type StackParamList = {
   CheckScreen: undefined;
   ProfileScreen: undefined;
   WelcomeScreen: undefined;
+
+  LoginScreen: undefined;
 };
