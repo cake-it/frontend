@@ -2,7 +2,7 @@ import React from 'react';
 import { theme } from 'styles/theme';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import LogoText from '@assets/images/common/logoText.svg';
-import OnboardingButton from '@components/Register/Common/OnboardingButton';
+import OnboardingButton from '@components/Common/OnboardingButton';
 import { globalStyles } from 'styles/global';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParamList } from 'types/routes/types';
@@ -25,6 +25,7 @@ const Onboarding = ({ navigation }: Props) => {
           text="60초만에 회원가입"
         />
         <OnboardingButton
+          onPress={() => navigation.navigate('LoginScreen')}
           backgroundColor={theme.white}
           borderColor="#DFDFDF"
           textColor="#404040"
