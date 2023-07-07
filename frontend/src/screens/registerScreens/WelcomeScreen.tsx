@@ -1,5 +1,5 @@
 import React from 'react';
-import OnboardingButton from '@components/Register/Common/OnboardingButton';
+import OnboardingButton from '@components/Common/OnboardingButton';
 import WelcomeComponent from '@components/Register/WelcomeComponent';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { theme } from 'styles/theme';
