@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { theme } from 'styles/theme';
@@ -52,12 +51,12 @@ const IdInput = ({ navigation }: Props) => {
 
   const buttonStyle = [
     registerStyles.button,
-    userId !== '' && isValidId && { backgroundColor: theme.pink },
+    isValidId && { backgroundColor: theme.pink },
   ];
 
   const duplicateTextStyle = [
     registerStyles.buttonText,
-    userId !== '' && isValidId && { color: theme.white },
+    isValidId && { color: theme.white },
   ];
 
   const checkTextStyle = [
@@ -99,6 +98,7 @@ const IdInput = ({ navigation }: Props) => {
         <KeyboardButtonComponent
           onPress={handleDuplicationCheck}
           buttonStyle={buttonStyle}
+          disabled={!isValidId}
           buttonTextStyle={duplicateTextStyle}
           text="중복체크"
         />

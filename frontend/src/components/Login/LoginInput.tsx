@@ -6,13 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { theme } from 'styles/theme';
 import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
@@ -42,7 +36,9 @@ const LoginInput = ({
   // focused 관리
   const isFocused = idFocused || passwordFocused;
 
-  // 입력창 클릭시 focus
+  const idDisabled = !(userId.length >= 7 && userId.length <= 12);
+
+  // 비밀번호 입력창 클릭시 focus
   const handleInputPress = () => {
     passwordInputRef.current?.focus();
   };
@@ -54,7 +50,7 @@ const LoginInput = ({
 
   // text 입력 싸이클 관리
   useEffect(() => {
-    userId !== '' && userPassword.length === 6
+    userId && userPassword.length === 6
       ? setDisabled(false)
       : setDisabled(true),
       setLoginError(false);
@@ -87,10 +83,31 @@ const LoginInput = ({
     !disabled && { color: theme.white },
   ];
 
+  const idButtonStyle = [
+    registerStyles.button,
+    !idDisabled && { backgroundColor: theme.pink },
+  ];
+
+  const idButtonTextStyle = [
+    registerStyles.buttonText,
+    !idDisabled && { color: theme.white },
+  ];
+
+  const idTextStyle = [
+    registerStyles.infoText,
+    !userId && { color: theme.black },
+  ];
+
+  const passwordTextStyle = [
+    registerStyles.infoText,
+    !userPassword && { color: theme.black },
+    { marginTop: 40 },
+  ];
+
   return (
     <KeyboardAvoidingView style={globalStyles.buttonFlex} behavior="padding">
       <View style={registerStyles.inputContainer}>
-        <Text style={registerStyles.infoText}>아이디</Text>
+        <Text style={idTextStyle}>아이디</Text>
         <TextInput
           ref={idInputRef}
           style={inputStyle}
@@ -106,9 +123,7 @@ const LoginInput = ({
           value={userId}
         />
 
-        <Text style={[registerStyles.infoText, { marginTop: 40 }]}>
-          비밀번호
-        </Text>
+        <Text style={passwordTextStyle}>비밀번호</Text>
         {/* hidden input */}
         <TextInput
           ref={passwordInputRef}
@@ -143,15 +158,24 @@ const LoginInput = ({
         )}
       </View>
 
-      {isFocused && (
-        <KeyboardButtonComponent
-          onPress={handleConfirmLogin}
-          buttonStyle={buttonStyle}
-          buttonTextStyle={buttonTextStyle}
-          disabled={disabled}
-          text="로그인"
-        />
-      )}
+      {isFocused &&
+        (idFocused ? (
+          <KeyboardButtonComponent
+            onPress={handleInputPress}
+            disabled={idDisabled}
+            buttonStyle={idButtonStyle}
+            buttonTextStyle={idButtonTextStyle}
+            text="다음"
+          />
+        ) : (
+          <KeyboardButtonComponent
+            onPress={handleConfirmLogin}
+            buttonStyle={buttonStyle}
+            buttonTextStyle={buttonTextStyle}
+            disabled={disabled}
+            text="로그인"
+          />
+        ))}
     </KeyboardAvoidingView>
   );
 };
