@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RouteScreens, StackParamList } from 'types/routes/types';
 import Onboarding from '@screens/Onboarding';
 import RegisterRoute from './RegisterRoute';
+import LoginScreen from '@screens/LoginScreen';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -27,6 +28,11 @@ const MainRoute = () => {
         <Stack.Screen
           name={RouteScreens.RegisterRoute}
           component={RegisterRoute}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={RouteScreens.LoginScreen}
+          component={LoginScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

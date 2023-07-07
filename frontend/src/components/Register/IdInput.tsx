@@ -14,6 +14,7 @@ import { registerStyles } from 'styles/register/styles';
 import Pass from '@assets/images/register/pass.svg';
 import Fail from '@assets/images/register/fail.svg';
 import { Props } from '@screens/registerScreens/IdScreen';
+import KeyboardButtonComponent from './Common/KeyboardButtonComponent';
 
 const IdInput = ({ navigation }: Props) => {
   const [userId, setUserId] = useState('');
@@ -95,9 +96,12 @@ const IdInput = ({ navigation }: Props) => {
       </View>
 
       {isFocused && (
-        <TouchableOpacity onPress={handleDuplicationCheck} style={buttonStyle}>
-          <Text style={duplicateTextStyle}>중복체크</Text>
-        </TouchableOpacity>
+        <KeyboardButtonComponent
+          onPress={handleDuplicationCheck}
+          buttonStyle={buttonStyle}
+          buttonTextStyle={duplicateTextStyle}
+          text="중복체크"
+        />
       )}
     </KeyboardAvoidingView>
   );

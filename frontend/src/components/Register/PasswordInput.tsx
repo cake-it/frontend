@@ -10,16 +10,12 @@ import {
 import { theme } from 'styles/theme';
 import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
+import { PasswordScreenProps } from 'types/register/types';
 import IdView from './Common/IdView';
 import Password from '@assets/images/register/passwordDot.svg';
 import OffPassword from '@assets/images/register/unPasswordDot.svg';
-import Fail from '@assets/images/register/fail.svg';
-
-interface PasswordScreenProps {
-  confirm?: boolean;
-  navigation: any;
-  route: any;
-}
+import ErrorTextComponent from './Common/ErrorTextComponent';
+import KeyboardButtonComponent from './Common/KeyboardButtonComponent';
 
 const PasswordInput = ({ navigation, confirm }: PasswordScreenProps) => {
   const [userPassword, setUserPassword] = useState('');
@@ -78,6 +74,10 @@ const PasswordInput = ({ navigation, confirm }: PasswordScreenProps) => {
     },
   ];
 
+  const buttonStyle = [registerStyles.button, { backgroundColor: theme.pink }];
+
+  const buttonTextStyle = [registerStyles.buttonText, { color: theme.white }];
+
   return (
     <KeyboardAvoidingView style={globalStyles.buttonFlex} behavior="padding">
       <View style={registerStyles.inputContainer}>
@@ -115,32 +115,19 @@ const PasswordInput = ({ navigation, confirm }: PasswordScreenProps) => {
         </TouchableOpacity>
 
         {errorText !== '' && (
-          <View
-            style={[
-              registerStyles.CheckTextView,
-              { justifyContent: 'center', marginTop: 35 },
-            ]}
-          >
-            <Text style={[registerStyles.checkText, { color: '#FF8080' }]}>
-              {errorText}
-            </Text>
-            <Fail />
-          </View>
+          <ErrorTextComponent svg errorText="비밀번호가 일치하지 않습니다" />
         )}
-
         {/* 비밀번호 확인 페이지* - 일치 하지 않을 경우 안보이게  */}
         {errorText ? null : <IdView />}
       </View>
 
       {errorText && (
-        <TouchableOpacity
+        <KeyboardButtonComponent
           onPress={handleResetPassword}
-          style={[registerStyles.button, { backgroundColor: theme.pink }]}
-        >
-          <Text style={[registerStyles.buttonText, { color: theme.white }]}>
-            비밀번호 초기화
-          </Text>
-        </TouchableOpacity>
+          buttonStyle={buttonStyle}
+          buttonTextStyle={buttonTextStyle}
+          text="비밀번호 초기화"
+        />
       )}
     </KeyboardAvoidingView>
   );

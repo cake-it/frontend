@@ -4,7 +4,7 @@ import Back from '@assets/images/common/backArrow.svg';
 import { theme } from 'styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
-const Header = () => {
+const Header = ({ title }: { title: string }) => {
   const navigation = useNavigation();
 
   return (
@@ -15,7 +15,7 @@ const Header = () => {
       >
         <Back />
       </TouchableOpacity>
-      <Text style={styles.headerText}>회원가입</Text>
+      <Text style={styles.headerText}>{title}</Text>
     </View>
   );
 };

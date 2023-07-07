@@ -8,12 +8,17 @@ import {
 import React from 'react';
 import { theme } from 'styles/theme';
 import { globalStyles } from 'styles/global';
-import { LayoutProps } from 'types/design/types';
-import Header from '@components/Register/Common/Header';
+import { RegisterLayoutProps } from 'types/design/types';
+import Header from '@components/Common/Header';
 import Indicator from '@components/Register/Common/Indicator';
-import OnboardingButton from '@components/Register/Common/OnboardingButton';
+import OnboardingButton from '@components/Common/OnboardingButton';
 
-const Layout = ({ children, profile, check, navigation }: LayoutProps) => {
+const Layout = ({
+  children,
+  profile,
+  check,
+  navigation,
+}: RegisterLayoutProps) => {
   const isProfileOrCheck = profile || check;
 
   const renderButton = () => (
@@ -27,7 +32,7 @@ const Layout = ({ children, profile, check, navigation }: LayoutProps) => {
 
   const renderContent = () => (
     <SafeAreaView style={globalStyles.container}>
-      <Header />
+      <Header title="회원가입" />
       <Indicator />
       {children}
     </SafeAreaView>

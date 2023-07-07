@@ -18,10 +18,24 @@ export interface CheckBox {
 }
 
 // layout
-export interface LayoutProps {
+export interface RegisterLayoutProps {
   navigation?: any;
   route?: any;
   children: ReactNode;
   profile?: boolean; // profile is checked
   check?: boolean; // checkScreen is checked
+}
+
+export interface LoginLayoutProps extends RegisterLayoutProps {
+  onPress: () => void;
+  disabled: boolean;
+}
+
+// keyboard button
+export interface KeyboardButtonProps {
+  disabled?: boolean;
+  onPress: () => void;
+  buttonStyle: any;
+  buttonTextStyle: any;
+  text: string;
 }
