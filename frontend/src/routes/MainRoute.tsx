@@ -5,6 +5,7 @@ import { RouteScreens, StackParamList } from 'types/routes/types';
 import Onboarding from '@screens/Onboarding';
 import RegisterRoute from './RegisterRoute';
 import LoginScreen from '@screens/LoginScreen';
+import CustomScreen from '@screens/CustomScreen';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -33,6 +34,11 @@ const MainRoute = () => {
         <Stack.Screen
           name={RouteScreens.LoginScreen}
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={RouteScreens.CustomScreen}
+          component={CustomScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
