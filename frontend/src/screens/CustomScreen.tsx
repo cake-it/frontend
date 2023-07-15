@@ -1,4 +1,4 @@
-import { Animated, Modal, StyleSheet, View } from 'react-native';
+import { Animated, Modal, Platform, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { globalStyles } from 'styles/global';
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
@@ -10,6 +10,8 @@ import Header from '@components/Custom/Header';
 const CustomScreen = () => {
   const [showModal, setShowModal] = useState(false);
   const [fadeAnim] = useState(new Animated.Value(0));
+
+  const topValue = Platform.OS === 'android' ? 25 : 55;
 
   const openModal = () => {
     setShowModal(true);
@@ -45,7 +47,7 @@ const CustomScreen = () => {
   const showToast = () => {
     Toast.show({
       position: 'top',
-      topOffset: 55,
+      topOffset: topValue,
       visibilityTime: 3000,
       type: 'codeToast',
     });

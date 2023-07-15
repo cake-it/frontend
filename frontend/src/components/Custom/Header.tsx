@@ -1,14 +1,20 @@
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import React from 'react';
 import Back from '@assets/images/custom/customX.svg';
 import Save from '@assets/images/custom/customSave.svg';
 import { useNavigation } from '@react-navigation/native';
 
 const Header = ({ showToast }: { showToast: () => void }) => {
+  const paddingTopValue = Platform.OS === 'android' ? 15 : 50;
   const navigation = useNavigation();
 
   return (
-    <View style={styles.headerView}>
+    <View style={[styles.headerView, { paddingTop: paddingTopValue }]}>
       <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
         <Back style={[styles.button, { marginLeft: 10 }]} />
       </TouchableWithoutFeedback>
@@ -23,7 +29,6 @@ export default Header;
 
 const styles = StyleSheet.create({
   headerView: {
-    paddingTop: 50,
     marginBottom: -28,
     justifyContent: 'space-between',
     flexDirection: 'row',
