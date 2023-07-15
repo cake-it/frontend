@@ -2,15 +2,17 @@ import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import React from 'react';
 import Back from '@assets/images/custom/customX.svg';
 import Save from '@assets/images/custom/customSave.svg';
+import { useNavigation } from '@react-navigation/native';
 
-// 버튼 기능 구현 전
-const Header = () => {
+const Header = ({ showToast }: { showToast: () => void }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.headerView}>
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
         <Back style={[styles.button, { marginLeft: 10 }]} />
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={showToast}>
         <Save style={[styles.button, { marginRight: 10 }]} />
       </TouchableWithoutFeedback>
     </View>
