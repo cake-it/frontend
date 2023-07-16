@@ -12,6 +12,7 @@ const KeyboardButtonComponent = ({
   return (
     <>
       <TouchableOpacity
+        activeOpacity={1.0}
         disabled={disabled}
         onPress={onPress}
         style={buttonStyle}

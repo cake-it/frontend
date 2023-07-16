@@ -23,7 +23,12 @@ const OnboardingButton = ({
   };
 
   return (
-    <TouchableOpacity onPress={onPress} disabled={disabled} style={buttonStyle}>
+    <TouchableOpacity
+      activeOpacity={1.0}
+      onPress={onPress}
+      disabled={disabled}
+      style={buttonStyle}
+    >
       <Text style={buttonText}>{text}</Text>
     </TouchableOpacity>
   );
