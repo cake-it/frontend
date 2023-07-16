@@ -7,7 +7,15 @@ import { globalStyles } from 'styles/global';
 import OnboardingButton from '@components/Common/OnboardingButton';
 import { theme } from 'styles/theme';
 
-const ProfileSelect = () => {
+const ProfileSelect = ({ navigation }: { navigation: any; route: any }) => {
+  const textStyle = [
+    registerStyles.inputLabel,
+    {
+      marginLeft: 15,
+      paddingRight: 15,
+    },
+  ];
+
   return (
     <View style={globalStyles.buttonFlex}>
       <View style={registerStyles.profileContainer}>
