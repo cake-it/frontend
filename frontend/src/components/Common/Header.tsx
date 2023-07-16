@@ -10,6 +10,7 @@ const Header = ({ title }: { title: string }) => {
   return (
     <View style={styles.headerView}>
       <TouchableOpacity
+        activeOpacity={1.0}
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
