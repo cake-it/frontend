@@ -10,6 +10,8 @@ const LoginScreen = () => {
 
   // 로그인 API (임시 에러처리)
   const handleConfirmLogin = () => {
+    console.log(userId, userPassword);
+    console.log('로그인 API');
     userId === 'test123' && userPassword === '123456'
       ? setLoginError(false)
       : setLoginError(true);

@@ -9,15 +9,13 @@ const Header = ({ title, notBack }: { title: string; notBack?: boolean }) => {
 
   return (
     <View style={styles.headerView}>
-      {!notBack && (
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Back />
-        </TouchableOpacity>
-      )}
-
+      <TouchableOpacity
+        activeOpacity={1.0}
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Back />
+      </TouchableOpacity>
       <Text style={styles.headerText}>{title}</Text>
     </View>
   );

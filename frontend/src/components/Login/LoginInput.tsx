@@ -6,13 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { theme } from 'styles/theme';
 import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
@@ -23,8 +17,9 @@ import KeyboardButtonComponent from '@components/Register/Common/KeyboardButtonC
 import { LoginScreenProps } from 'types/login/types';
 
 const LoginInput = ({
-  setDisabled,
-  disabled,
+  // 주석 추후 불필요시 삭제 예정
+  // setDisabled,
+  // disabled,
   handleConfirmLogin,
   loginError,
   userId,
@@ -39,10 +34,10 @@ const LoginInput = ({
   const idInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  // focused 관리
-  const isFocused = idFocused || passwordFocused;
+  // id : 7자리 - 12자리일 경우 pass
+  const idDisabled = !(userId.length >= 7 && userId.length <= 12);
 
-  // 입력창 클릭시 focus
+  // 비밀번호 입력창 클릭시 focus
   const handleInputPress = () => {
     passwordInputRef.current?.focus();
   };
@@ -54,10 +49,9 @@ const LoginInput = ({
 
   // text 입력 싸이클 관리
   useEffect(() => {
-    userId !== '' && userPassword.length === 6
-      ? setDisabled(false)
-      : setDisabled(true),
-      setLoginError(false);
+    userId && userPassword.length === 6
+      ? handleConfirmLogin()
+      : setLoginError(false); // 로그인 실패 후 다시 입력할 경우 err off
   }, [userId, userPassword]);
 
   // 스타일 분기 코드
@@ -77,20 +71,31 @@ const LoginInput = ({
     },
   ];
 
-  const buttonStyle = [
+  const idButtonStyle = [
     registerStyles.button,
-    !disabled && { backgroundColor: theme.pink },
+    !idDisabled && { backgroundColor: theme.pink },
   ];
 
-  const buttonTextStyle = [
+  const idButtonTextStyle = [
     registerStyles.buttonText,
-    !disabled && { color: theme.white },
+    !idDisabled && { color: theme.white },
+  ];
+
+  const idTextStyle = [
+    registerStyles.infoText,
+    !userId && { color: theme.black },
+  ];
+
+  const passwordTextStyle = [
+    registerStyles.infoText,
+    !userPassword && { color: theme.black },
+    { marginTop: 40 },
   ];
 
   return (
     <KeyboardAvoidingView style={globalStyles.buttonFlex} behavior="padding">
       <View style={registerStyles.inputContainer}>
-        <Text style={registerStyles.infoText}>아이디</Text>
+        <Text style={idTextStyle}>아이디</Text>
         <TextInput
           ref={idInputRef}
           style={inputStyle}
@@ -106,9 +111,7 @@ const LoginInput = ({
           value={userId}
         />
 
-        <Text style={[registerStyles.infoText, { marginTop: 40 }]}>
-          비밀번호
-        </Text>
+        <Text style={passwordTextStyle}>비밀번호</Text>
         {/* hidden input */}
         <TextInput
           ref={passwordInputRef}
@@ -138,18 +141,19 @@ const LoginInput = ({
           ))}
         </TouchableOpacity>
 
+        {/* 로그인 error UI */}
         {loginError && (
           <ErrorTextComponent errorText="아이디와 혹은 비밀번호가 일치하지 않습니다" />
         )}
       </View>
 
-      {isFocused && (
+      {idFocused && (
         <KeyboardButtonComponent
-          onPress={handleConfirmLogin}
-          buttonStyle={buttonStyle}
-          buttonTextStyle={buttonTextStyle}
-          disabled={disabled}
-          text="로그인"
+          onPress={handleInputPress}
+          disabled={idDisabled}
+          buttonStyle={idButtonStyle}
+          buttonTextStyle={idButtonTextStyle}
+          text="다음"
         />
       )}
     </KeyboardAvoidingView>
@@ -185,10 +189,5 @@ const styles = StyleSheet.create({
     height: 25,
     borderBottomWidth: 1,
     borderBottomColor: '#E8E8E8',
-  },
-  splitLine: {
-    borderWidth: 1,
-    width: '100%',
-    borderColor: '#EDEDED',
   },
 });
