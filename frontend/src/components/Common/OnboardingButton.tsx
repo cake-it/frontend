@@ -23,13 +23,7 @@ const OnboardingButton = ({
   };
 
   return (
-    // 인터렉션 아직 구현되지 않았음
-    <TouchableOpacity
-      activeOpacity={1.0}
-      onPress={onPress}
-      disabled={disabled}
-      style={buttonStyle}
-    >
+    <TouchableOpacity onPress={onPress} disabled={disabled} style={buttonStyle}>
       <Text style={buttonText}>{text}</Text>
     </TouchableOpacity>
   );

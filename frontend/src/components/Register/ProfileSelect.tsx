@@ -7,16 +7,7 @@ import { globalStyles } from 'styles/global';
 import OnboardingButton from '@components/Common/OnboardingButton';
 import { theme } from 'styles/theme';
 
-// 페이지 렌더링되면 기본 사진 선택되어 있음? 아니면 선택 해야하는지?
-const ProfileSelect = ({ navigation }: { navigation: any; route: any }) => {
-  const textStyle = [
-    registerStyles.inputLabel,
-    {
-      marginLeft: 15,
-      paddingRight: 15,
-    },
-  ];
-
+const ProfileSelect = () => {
   return (
     <View style={globalStyles.buttonFlex}>
       <View style={registerStyles.profileContainer}>
