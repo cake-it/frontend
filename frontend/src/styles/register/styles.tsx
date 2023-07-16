@@ -64,4 +64,9 @@ export const registerStyles = StyleSheet.create({
     textAlign: 'center',
     color: theme.disableTextGray,
   },
+  registerButtonView: {
+    alignItems: 'center',
+    gap: 20,
+    marginBottom: 20,
+  },
 });
