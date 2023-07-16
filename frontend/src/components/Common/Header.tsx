@@ -4,7 +4,7 @@ import Back from '@assets/images/common/backArrow.svg';
 import { theme } from 'styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
-const Header = ({ title }: { title: string }) => {
+const Header = ({ title, notBack }: { title: string; notBack?: boolean }) => {
   const navigation = useNavigation();
 
   return (

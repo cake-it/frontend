@@ -31,6 +31,13 @@ const Onboarding = ({ navigation }: Props) => {
           textColor="#404040"
           text="로그인"
         />
+        <OnboardingButton
+          onPress={() => navigation.navigate('CustomScreen')}
+          backgroundColor={theme.white}
+          borderColor="#DFDFDF"
+          textColor="#404040"
+          text="임시 (커스텀 이동)"
+        />
       </View>
     </View>
   );

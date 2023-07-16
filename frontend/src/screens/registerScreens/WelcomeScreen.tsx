@@ -13,7 +13,6 @@ const WelcomeScreen = () => {
       </SafeAreaView>
 
       <View style={globalStyles.buttonView}>
-        <View style={styles.splitLine} />
         <OnboardingButton
           onPress={() => console.log('홈 페이지')}
           backgroundColor={theme.pink}
@@ -30,11 +29,5 @@ export default WelcomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-
-  splitLine: {
-    borderWidth: 1,
-    width: '100%',
-    borderColor: '#EDEDED',
   },
 });
