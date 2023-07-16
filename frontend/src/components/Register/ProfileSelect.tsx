@@ -5,7 +5,6 @@ import InfoLayout from './InfoLayout';
 import ProfileComponent from './ProfileComponent';
 import ProfileScrollComponent from './ProfileScrollComponent';
 
-// 페이지 렌더링되면 기본 사진 선택되어 있음? 아니면 선택 해야하는지?
 const ProfileSelect = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
