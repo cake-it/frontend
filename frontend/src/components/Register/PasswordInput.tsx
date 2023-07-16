@@ -11,7 +11,6 @@ import { theme } from 'styles/theme';
 import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
 import { PasswordScreenProps } from 'types/register/types';
-import IdView from './Common/IdView';
 import Password from '@assets/images/register/passwordDot.svg';
 import OffPassword from '@assets/images/register/unPasswordDot.svg';
 import ErrorTextComponent from './Common/ErrorTextComponent';
@@ -117,8 +116,6 @@ const PasswordInput = ({ navigation, confirm }: PasswordScreenProps) => {
         {errorText !== '' && (
           <ErrorTextComponent svg errorText="비밀번호가 일치하지 않습니다" />
         )}
-        {/* 비밀번호 확인 페이지* - 일치 하지 않을 경우 안보이게  */}
-        {errorText ? null : <IdView />}
       </View>
 
       {errorText && (

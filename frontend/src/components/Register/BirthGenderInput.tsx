@@ -9,10 +9,9 @@ import {
 import { theme } from 'styles/theme';
 import { globalStyles } from 'styles/global';
 import { registerStyles } from 'styles/register/styles';
+import { Props } from '@screens/registerScreens/BirthGenderScreen';
 import Dash from '@assets/images/register/dash.svg';
 import Dots from '@assets/images/register/dots.svg';
-import InfoLayout from './InfoLayout';
-import { Props } from '@screens/registerScreens/BirthGenderScreen';
 
 // 모든값 입력되면 다음 페이지로 navigate
 const BirthGenderInput = ({ navigation }: Props) => {
@@ -96,8 +95,6 @@ const BirthGenderInput = ({ navigation }: Props) => {
 
           <Dots />
         </View>
-
-        <InfoLayout index={2} />
       </View>
     </KeyboardAvoidingView>
   );

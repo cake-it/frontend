@@ -19,11 +19,8 @@ export interface CheckBox {
 
 // layout
 export interface RegisterLayoutProps {
-  navigation?: any;
-  route?: any;
   children: ReactNode;
   profile?: boolean; // profile is checked
-  check?: boolean; // checkScreen is checked
 }
 
 export interface LoginLayoutProps extends RegisterLayoutProps {
