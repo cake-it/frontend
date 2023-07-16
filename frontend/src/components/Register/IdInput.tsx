@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import { theme } from 'styles/theme';
@@ -49,16 +50,6 @@ const IdInput = ({ navigation }: Props) => {
     },
   ];
 
-<<<<<<< HEAD
-  const buttonStyle = [
-    registerStyles.button,
-    isValidId && { backgroundColor: theme.pink },
-  ];
-
-  const duplicateTextStyle = [
-    registerStyles.buttonText,
-    isValidId && { color: theme.white },
-=======
   const duplicateButtonStyle = [
     styles.duplicateButton,
     disabledCheck && { backgroundColor: theme.pink },
@@ -67,7 +58,6 @@ const IdInput = ({ navigation }: Props) => {
   const duplicateTextStyle = [
     styles.duplicateText,
     disabledCheck && { color: theme.white },
->>>>>>> main
   ];
 
   const checkTextStyle = [
@@ -125,22 +115,12 @@ const IdInput = ({ navigation }: Props) => {
         )}
       </View>
 
-<<<<<<< HEAD
-      {isFocused && (
-        <KeyboardButtonComponent
-          onPress={handleDuplicationCheck}
-          buttonStyle={buttonStyle}
-          disabled={!isValidId}
-          buttonTextStyle={duplicateTextStyle}
-          text="중복체크"
-=======
       <View style={registerStyles.registerButtonView}>
         <OnboardingButton
           onPress={() => navigation.navigate('PasswordScreen')}
           backgroundColor={disabledCheck ? theme.pink : theme.disableButtonGray}
           textColor={disabledCheck ? theme.white : theme.disableTextGray}
           text="다음"
->>>>>>> main
         />
       </View>
     </KeyboardAvoidingView>
