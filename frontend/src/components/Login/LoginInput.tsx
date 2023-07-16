@@ -17,8 +17,9 @@ import KeyboardButtonComponent from '@components/Register/Common/KeyboardButtonC
 import { LoginScreenProps } from 'types/login/types';
 
 const LoginInput = ({
-  setDisabled,
-  disabled,
+  // 주석 추후 불필요시 삭제 예정
+  // setDisabled,
+  // disabled,
   handleConfirmLogin,
   loginError,
   userId,
@@ -33,9 +34,7 @@ const LoginInput = ({
   const idInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  // focused 관리
-  const isFocused = idFocused || passwordFocused;
-
+  // id : 7자리 - 12자리일 경우 pass
   const idDisabled = !(userId.length >= 7 && userId.length <= 12);
 
   // 비밀번호 입력창 클릭시 focus
@@ -51,9 +50,8 @@ const LoginInput = ({
   // text 입력 싸이클 관리
   useEffect(() => {
     userId && userPassword.length === 6
-      ? setDisabled(false)
-      : setDisabled(true),
-      setLoginError(false);
+      ? handleConfirmLogin()
+      : setLoginError(false); // 로그인 실패 후 다시 입력할 경우 err off
   }, [userId, userPassword]);
 
   // 스타일 분기 코드
@@ -71,16 +69,6 @@ const LoginInput = ({
       borderBottomColor: theme.pink,
       borderBottomWidth: 2,
     },
-  ];
-
-  const buttonStyle = [
-    registerStyles.button,
-    !disabled && { backgroundColor: theme.pink },
-  ];
-
-  const buttonTextStyle = [
-    registerStyles.buttonText,
-    !disabled && { color: theme.white },
   ];
 
   const idButtonStyle = [
@@ -153,29 +141,21 @@ const LoginInput = ({
           ))}
         </TouchableOpacity>
 
+        {/* 로그인 error UI */}
         {loginError && (
           <ErrorTextComponent errorText="아이디와 혹은 비밀번호가 일치하지 않습니다" />
         )}
       </View>
 
-      {isFocused &&
-        (idFocused ? (
-          <KeyboardButtonComponent
-            onPress={handleInputPress}
-            disabled={idDisabled}
-            buttonStyle={idButtonStyle}
-            buttonTextStyle={idButtonTextStyle}
-            text="다음"
-          />
-        ) : (
-          <KeyboardButtonComponent
-            onPress={handleConfirmLogin}
-            buttonStyle={buttonStyle}
-            buttonTextStyle={buttonTextStyle}
-            disabled={disabled}
-            text="로그인"
-          />
-        ))}
+      {idFocused && (
+        <KeyboardButtonComponent
+          onPress={handleInputPress}
+          disabled={idDisabled}
+          buttonStyle={idButtonStyle}
+          buttonTextStyle={idButtonTextStyle}
+          text="다음"
+        />
+      )}
     </KeyboardAvoidingView>
   );
 };
@@ -209,10 +189,5 @@ const styles = StyleSheet.create({
     height: 25,
     borderBottomWidth: 1,
     borderBottomColor: '#E8E8E8',
-  },
-  splitLine: {
-    borderWidth: 1,
-    width: '100%',
-    borderColor: '#EDEDED',
   },
 });
