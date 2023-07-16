@@ -7,8 +7,8 @@ export type Props = NativeStackScreenProps<StackParamList, 'ProfileScreen'>;
 
 const ProfileScreen = ({ navigation, route }: Props) => {
   return (
-    <Layout navigation={navigation} route={route} profile>
-      <ProfileSelect />
+    <Layout profile>
+      <ProfileSelect navigation={navigation} route={route} />
     </Layout>
   );
 };
