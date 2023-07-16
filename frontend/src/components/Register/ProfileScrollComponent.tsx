@@ -1,7 +1,20 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { theme } from 'styles/theme';
 
 const ProfileScrollComponent = () => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleImagePress = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  const selectedImageItem = {
+    borderColor: theme.pink,
+    borderWidth: 2,
+    borderRadius: 100,
+  };
+
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}
@@ -9,11 +22,21 @@ const ProfileScrollComponent = () => {
       style={styles.imageView}
     >
       {Array.from(Array(9).keys()).map((index) => (
-        <Image
+        <TouchableOpacity
           key={index}
-          style={[styles.image, styles.imageMargin]}
-          source={require('@assets/images/register/profileExample.png')}
-        />
+          onPress={() => handleImagePress(index)}
+          style={{ justifyContent: 'center' }}
+          activeOpacity={1.0}
+        >
+          <Image
+            style={[
+              styles.image,
+              styles.imageMargin,
+              selectedImageIndex === index && selectedImageItem,
+            ]}
+            source={require('@assets/images/register/profileExample.png')}
+          />
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );
@@ -24,7 +47,7 @@ export default ProfileScrollComponent;
 const styles = StyleSheet.create({
   imageView: {
     backgroundColor: '#FAFAFA',
-    marginTop: 15,
+    marginTop: 35,
     height: 85,
   },
   image: {

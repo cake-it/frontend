@@ -1,25 +1,34 @@
 import React from 'react';
 import { registerStyles } from 'styles/register/styles';
-import { ScrollView, Text, View } from 'react-native';
-import InfoLayout from './InfoLayout';
+import { Text, View } from 'react-native';
 import ProfileComponent from './ProfileComponent';
 import ProfileScrollComponent from './ProfileScrollComponent';
+import { globalStyles } from 'styles/global';
+import OnboardingButton from '@components/Common/OnboardingButton';
+import { theme } from 'styles/theme';
 
 const ProfileSelect = () => {
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={registerStyles.inputContainer}>
-        <Text style={registerStyles.inputLabel}>프로필을 설정해주세요</Text>
+    <View style={globalStyles.buttonFlex}>
+      <View style={registerStyles.profileContainer}>
+        <Text style={textStyle}>프로필을 설정해주세요</Text>
 
         <ProfileComponent />
+
+        <View>
+          <ProfileScrollComponent />
+        </View>
       </View>
 
-      <ProfileScrollComponent />
-
-      <View style={[registerStyles.inputContainer, { marginBottom: 40 }]}>
-        <InfoLayout index={4} />
+      <View style={registerStyles.registerButtonView}>
+        <OnboardingButton
+          onPress={() => navigation.navigate('WelcomeScreen')}
+          backgroundColor={theme.pink}
+          textColor={theme.white}
+          text="완료하기"
+        />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
