@@ -3,6 +3,7 @@ import { theme } from 'styles/theme';
 
 // 안드로이드 스타일 분기 추가
 const bottom = Platform.OS === 'android' ? 22 : 0;
+const marginBottom = Platform.OS === 'android' ? 40 : 20;
 
 export const registerStyles = StyleSheet.create({
   inputContainer: {
@@ -67,6 +68,10 @@ export const registerStyles = StyleSheet.create({
   registerButtonView: {
     alignItems: 'center',
     gap: 20,
-    marginBottom: 20,
+    marginBottom: marginBottom,
+  },
+  profileContainer: {
+    marginTop: 35,
+    flex: 1,
   },
 });
