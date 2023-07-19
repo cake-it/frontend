@@ -22,7 +22,7 @@ const Onboarding = ({ navigation }: Props) => {
           onPress={() => navigation.navigate('RegisterRoute')}
           backgroundColor={theme.pink}
           textColor={theme.white}
-          text="60초만에 회원가입"
+          text="60초 회원가입"
         />
         <OnboardingButton
           onPress={() => navigation.navigate('LoginScreen')}

@@ -1,5 +1,9 @@
 import React from 'react';
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import {
+  DefaultTheme,
+  NavigationContainer,
+  Route,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RouteScreens, StackParamList } from 'types/routes/types';
 import Onboarding from '@screens/Onboarding';
@@ -18,9 +22,17 @@ const navTheme = {
 };
 
 const MainRoute = () => {
+  // 커스텀 페이지일 경우, 좌우가 아닌 상하로 navigation
+  const shouldHideHeader = (route: Route<string, object | undefined>) => {
+    return route.name === RouteScreens.CustomScreen;
+  };
   return (
     <NavigationContainer theme={navTheme}>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={({ route }) => ({
+          gestureDirection: shouldHideHeader(route) ? 'vertical' : 'horizontal',
+        })}
+      >
         <Stack.Screen
           name={RouteScreens.OnboardingScreen}
           component={Onboarding}

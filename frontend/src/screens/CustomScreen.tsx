@@ -33,7 +33,7 @@ const CustomScreen = () => {
   const handleCoachClose = () => {
     Animated.timing(fadeAnim, {
       toValue: 0,
-      duration: 1000,
+      duration: 500,
       useNativeDriver: true,
     }).start(() => {
       setShowCoach(false);
@@ -45,7 +45,7 @@ const CustomScreen = () => {
     if (showCoach) {
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 900,
+        duration: 500,
         useNativeDriver: true,
       }).start(() => {
         setShowCoach(true);
