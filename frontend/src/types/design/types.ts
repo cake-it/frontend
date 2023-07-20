@@ -8,6 +8,7 @@ export interface OnboardingButtonProps {
   backgroundColor: string;
   disabled?: boolean;
   onPress?: () => void;
+  bottomSheet?: boolean;
 }
 
 // checkbox
