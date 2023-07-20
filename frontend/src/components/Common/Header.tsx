@@ -1,10 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Back from '@assets/images/common/backArrow.svg';
 import { theme } from 'styles/theme';
 import { useNavigation } from '@react-navigation/native';
+import Back from '@assets/images/common/backArrow.svg';
+import BottomArrow from '@assets/images/map/bottomArrow.svg';
 
-const Header = ({ title, notBack }: { title: string; notBack?: boolean }) => {
+const Header = ({
+  title,
+  notBack,
+  bottom,
+}: {
+  title: string;
+  notBack?: boolean;
+  bottom?: boolean;
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -14,7 +23,7 @@ const Header = ({ title, notBack }: { title: string; notBack?: boolean }) => {
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
-        <Back />
+        {bottom ? <BottomArrow /> : <Back />}
       </TouchableOpacity>
       <Text style={styles.headerText}>{title}</Text>
     </View>
