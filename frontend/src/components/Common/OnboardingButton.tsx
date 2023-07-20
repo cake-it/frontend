@@ -9,12 +9,14 @@ const OnboardingButton = ({
   backgroundColor,
   disabled,
   onPress,
+  bottomSheet,
 }: OnboardingButtonProps) => {
   const buttonStyle = {
     ...styles.button,
     borderColor: borderColor,
     backgroundColor: backgroundColor,
     borderWidth: borderColor ? 1 : undefined,
+    paddingVertical: bottomSheet ? 15 : 20,
   };
 
   const buttonText = {
@@ -39,7 +41,6 @@ export default OnboardingButton;
 const styles = StyleSheet.create({
   button: {
     width: '90%',
-    paddingVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
