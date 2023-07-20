@@ -1,9 +1,13 @@
 // main route
 export enum RouteScreens {
   OnboardingScreen = 'OnboardingScreen',
+
   RegisterRoute = 'RegisterRoute',
+
   LoginScreen = 'LoginScreen',
   CustomScreen = 'CustomScreen',
+
+  MapRoute = 'MapRoute',
 }
 
 // Register routes
@@ -17,10 +21,17 @@ export enum RegisterScreens {
   WelcomeScreen = 'WelcomeScreen',
 }
 
+// Map routes
+export enum MapScreens {
+  MapSearchScreen = 'MapSearchScreen',
+  ShopInfoScreen = 'ShopInfoScreen',
+}
+
 // 필요한 파라미터가 없는 상태
 export type StackParamList = {
   // route
   RegisterRoute: undefined;
+  MapRoute: undefined;
 
   // Screen
   OnboardingScreen: undefined;
@@ -35,4 +46,7 @@ export type StackParamList = {
   LoginScreen: undefined;
 
   CustomScreen: undefined;
+
+  MapSearchScreen: undefined;
+  ShopInfoScreen: undefined;
 };
