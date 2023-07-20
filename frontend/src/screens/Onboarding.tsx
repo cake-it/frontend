@@ -38,6 +38,13 @@ const Onboarding = ({ navigation }: Props) => {
           textColor="#404040"
           text="임시 (커스텀 이동)"
         />
+        <OnboardingButton
+          onPress={() => navigation.navigate('MapRoute')}
+          backgroundColor={theme.white}
+          borderColor="#DFDFDF"
+          textColor="#404040"
+          text="임시 (지도 이동)"
+        />
       </View>
     </View>
   );
