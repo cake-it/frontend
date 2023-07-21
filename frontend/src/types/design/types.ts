@@ -37,3 +37,11 @@ export interface KeyboardButtonProps {
   buttonTextStyle: any;
   text: string;
 }
+
+// Header
+export interface CommonHeaderProps {
+  title: string;
+  notBack?: boolean;
+  bottom?: boolean;
+  onPress?: () => void;
+}
