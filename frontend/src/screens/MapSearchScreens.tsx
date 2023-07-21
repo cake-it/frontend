@@ -73,14 +73,13 @@ const MapSearchScreens = ({ navigation }: Props) => {
     <View style={styles.container}>
       <GestureHandlerRootView style={styles.container}>
         {/* Map */}
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <MapView
-            initialRegion={defaultPlace}
-            region={region || undefined}
-            style={styles.container}
-            provider={PROVIDER_GOOGLE}
-          />
-        </TouchableWithoutFeedback>
+        <MapView
+          onPress={Keyboard.dismiss} // 일단 지도 클릭하면 dismiss 설정 구현 방향에 따라 수정 가능성 O
+          initialRegion={defaultPlace}
+          region={region || undefined}
+          style={styles.container}
+          provider={PROVIDER_GOOGLE}
+        />
 
         {/* Search */}
         <MapSearchComponent
