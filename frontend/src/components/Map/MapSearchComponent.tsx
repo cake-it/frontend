@@ -16,6 +16,7 @@ const MapSearchComponent = ({
   setSearchText,
   setRegion,
   delta,
+  setIsFocused,
 }: MapSearchComponentProps) => {
   // 검색한 위치로 이동
   const handleMoveToLocation = async () => {
@@ -48,16 +49,18 @@ const MapSearchComponent = ({
         style={styles.searchInput}
         value={searchText}
         onChangeText={setSearchText}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         placeholder="딸기 케이크 맛집을 검색해보세요"
         placeholderTextColor="#b3b3b3"
       />
+
       {/* API 연결하면서 터치 범위 수정해보기 */}
       <TouchableWithoutFeedback
         disabled={!searchText}
         onPress={handleMoveToLocation}
-        hitSlop={{ top: 70, bottom: 20, left: 20, right: 20 }}
       >
-        <Search style={{ position: 'absolute', right: 35 }} />
+        <Search style={styles.icon} />
       </TouchableWithoutFeedback>
     </View>
   );
@@ -91,5 +94,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     elevation: 10,
+  },
+  icon: {
+    position: 'absolute',
+    right: 35,
   },
 });
