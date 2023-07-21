@@ -10,7 +10,7 @@ import Onboarding from '@screens/Onboarding';
 import RegisterRoute from './RegisterRoute';
 import LoginScreen from '@screens/LoginScreen';
 import CustomScreen from '@screens/CustomScreen';
-import MapRoute from './MapRoute';
+import MapSearchScreens from '@screens/MapSearchScreens';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -55,8 +55,8 @@ const MainRoute = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name={RouteScreens.MapRoute}
-          component={MapRoute}
+          name={RouteScreens.MapSearchScreen}
+          component={MapSearchScreens}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
