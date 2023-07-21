@@ -4,16 +4,9 @@ import { theme } from 'styles/theme';
 import { useNavigation } from '@react-navigation/native';
 import Back from '@assets/images/common/backArrow.svg';
 import BottomArrow from '@assets/images/map/bottomArrow.svg';
+import { CommonHeaderProps } from 'types/design/types';
 
-const Header = ({
-  title,
-  notBack,
-  bottom,
-}: {
-  title: string;
-  notBack?: boolean;
-  bottom?: boolean;
-}) => {
+const Header = ({ title, notBack, bottom, onPress }: CommonHeaderProps) => {
   const navigation = useNavigation();
 
   return (
@@ -21,7 +14,7 @@ const Header = ({
       <TouchableOpacity
         activeOpacity={1.0}
         style={styles.backButton}
-        onPress={() => navigation.goBack()}
+        onPress={onPress ? onPress : () => navigation.goBack()}
       >
         {bottom ? <BottomArrow /> : <Back />}
       </TouchableOpacity>
