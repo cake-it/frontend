@@ -5,6 +5,7 @@ export interface MapSearchComponentProps {
   delta: number;
   setSearchText: Dispatch<SetStateAction<string>>;
   setRegion: Dispatch<SetStateAction<Region | null>>;
+  setIsFocused: Dispatch<SetStateAction<boolean>>;
 }
 
 export type Region = {
