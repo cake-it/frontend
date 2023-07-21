@@ -1,5 +1,6 @@
 import {
   Keyboard,
+  Platform,
   StyleSheet,
   TextInput,
   TouchableWithoutFeedback,
@@ -68,6 +69,9 @@ const MapSearchComponent = ({
 
 export default MapSearchComponent;
 
+// 검색창 높이 OS 사이즈 분기처리
+const searchVertical = Platform.OS === 'ios' ? 60 : 40;
+
 const styles = StyleSheet.create({
   searchView: {
     flexDirection: 'row',
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   searchInput: {
-    marginVertical: 60,
+    marginVertical: searchVertical,
     backgroundColor: theme.white,
     paddingHorizontal: 20,
     width: '95%',
