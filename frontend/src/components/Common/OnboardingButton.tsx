@@ -40,7 +40,7 @@ export default OnboardingButton;
 
 const styles = StyleSheet.create({
   button: {
-    width: '90%',
+    width: '92%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
