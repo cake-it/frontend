@@ -1,9 +1,13 @@
 // main route
 export enum RouteScreens {
   OnboardingScreen = 'OnboardingScreen',
+
   RegisterRoute = 'RegisterRoute',
+
   LoginScreen = 'LoginScreen',
   CustomScreen = 'CustomScreen',
+
+  MapSearchScreen = 'MapSearchScreen',
 }
 
 // Register routes
@@ -35,4 +39,6 @@ export type StackParamList = {
   LoginScreen: undefined;
 
   CustomScreen: undefined;
+
+  MapSearchScreen: undefined;
 };

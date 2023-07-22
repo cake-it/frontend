@@ -8,6 +8,7 @@ export interface OnboardingButtonProps {
   backgroundColor: string;
   disabled?: boolean;
   onPress?: () => void;
+  bottomSheet?: boolean;
 }
 
 // checkbox
@@ -35,4 +36,12 @@ export interface KeyboardButtonProps {
   buttonStyle: any;
   buttonTextStyle: any;
   text: string;
+}
+
+// Header
+export interface CommonHeaderProps {
+  title: string;
+  notBack?: boolean;
+  bottom?: boolean;
+  onPress?: () => void;
 }
