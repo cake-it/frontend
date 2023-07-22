@@ -24,11 +24,6 @@ export interface RegisterLayoutProps {
   profile?: boolean; // profile is checked
 }
 
-export interface LoginLayoutProps extends RegisterLayoutProps {
-  onPress: () => void;
-  disabled: boolean;
-}
-
 // keyboard button
 export interface KeyboardButtonProps {
   disabled?: boolean;

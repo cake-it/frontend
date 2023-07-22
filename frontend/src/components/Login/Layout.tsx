@@ -4,12 +4,11 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Header from '@components/Common/Header';
-import { LoginLayoutProps } from 'types/design/types';
 import { globalStyles } from 'styles/global';
 
-const Layout = ({ children, onPress, disabled }: LoginLayoutProps) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   const renderContent = () => (
     <SafeAreaView style={globalStyles.container}>
       <Header title="로그인" />
