@@ -49,7 +49,14 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
     return (
       <View style={styles.infoView}>
         <Text style={styles.subText}>{title}</Text>
-        <Text style={[styles.subText, { color }]}>{content}</Text>
+        <Text
+          // 이 부분도 나중에 data 받아 올 때 같이 수정 들어가야함
+          numberOfLines={2}
+          ellipsizeMode="tail"
+          style={[styles.subText, { color }]}
+        >
+          {content}
+        </Text>
       </View>
     );
   };
