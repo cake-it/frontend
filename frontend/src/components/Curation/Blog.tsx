@@ -14,7 +14,7 @@ const Blog = ({
 }) => {
   return (
     <View style={{ flex: 1, marginTop: marginTop }}>
-      <Header title="큐레이션" onPress={() => setBlogPressed(false)} />
+      <Header title="상세글보기" onPress={() => setBlogPressed(false)} />
 
       <WebView
         style={{ flex: 1, marginTop: 30 }}
