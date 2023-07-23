@@ -52,7 +52,7 @@ const Card = ({
         resizeMode="cover"
       >
         <LinearGradient
-          colors={['transparent', 'rgba(0, 0, 0, 0.68)']}
+          colors={['transparent', 'rgba(0, 0, 0, 0.73)']}
           style={styles.gradient}
         />
         <View style={styles.wrapper}>
