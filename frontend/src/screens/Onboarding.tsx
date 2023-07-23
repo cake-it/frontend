@@ -45,6 +45,13 @@ const Onboarding = ({ navigation }: Props) => {
           textColor="#404040"
           text="임시 (지도 이동)"
         />
+        <OnboardingButton
+          onPress={() => navigation.navigate('CurationScreen')}
+          backgroundColor={theme.white}
+          borderColor="#DFDFDF"
+          textColor="#404040"
+          text="임시 (큐레이션 이동)"
+        />
       </View>
     </View>
   );

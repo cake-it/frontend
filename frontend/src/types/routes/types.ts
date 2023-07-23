@@ -8,6 +8,8 @@ export enum RouteScreens {
   CustomScreen = 'CustomScreen',
 
   MapSearchScreen = 'MapSearchScreen',
+
+  CurationScreen = 'CurationScreen',
 }
 
 // Register routes
@@ -41,4 +43,6 @@ export type StackParamList = {
   CustomScreen: undefined;
 
   MapSearchScreen: undefined;
+
+  CurationScreen: undefined;
 };

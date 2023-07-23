@@ -11,6 +11,7 @@ import RegisterRoute from './RegisterRoute';
 import LoginScreen from '@screens/LoginScreen';
 import CustomScreen from '@screens/CustomScreen';
 import MapSearchScreens from '@screens/MapSearchScreens';
+import CurationScreen from '@screens/CurationScreen';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -57,6 +58,11 @@ const MainRoute = () => {
         <Stack.Screen
           name={RouteScreens.MapSearchScreen}
           component={MapSearchScreens}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={RouteScreens.CurationScreen}
+          component={CurationScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
