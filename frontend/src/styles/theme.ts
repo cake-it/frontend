@@ -1,6 +1,6 @@
 export const theme = {
   // colors
-  pink: '#FF648F',
+  pink: '#FF4775',
   black: '#000000',
   white: '#FFFFFF',
   disableTextGray: '#C0C0C0',
