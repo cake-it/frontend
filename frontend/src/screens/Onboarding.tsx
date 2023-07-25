@@ -39,7 +39,7 @@ const Onboarding = ({ navigation }: Props) => {
           text="임시 (커스텀 이동)"
         />
         <OnboardingButton
-          onPress={() => navigation.navigate('MapSearchScreen')}
+          onPress={() => navigation.navigate('BottomTabRoute')}
           backgroundColor={theme.white}
           borderColor="#DFDFDF"
           textColor="#404040"

@@ -1,17 +1,13 @@
 import React from 'react';
-import {
-  DefaultTheme,
-  NavigationContainer,
-  Route,
-} from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RouteScreens, StackParamList } from 'types/routes/types';
 import Onboarding from '@screens/Onboarding';
 import RegisterRoute from './RegisterRoute';
 import LoginScreen from '@screens/LoginScreen';
 import CustomScreen from '@screens/CustomScreen';
-import MapSearchScreens from '@screens/MapSearchScreens';
 import CurationScreen from '@screens/CurationScreen';
+import BottomTabRoute from './BottomTabRoute';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -24,17 +20,9 @@ const navTheme = {
 };
 
 const MainRoute = () => {
-  // 커스텀 페이지일 경우, 좌우가 아닌 상하로 navigation
-  const shouldHideHeader = (route: Route<string, object | undefined>) => {
-    return route.name === RouteScreens.CustomScreen;
-  };
   return (
     <NavigationContainer theme={navTheme}>
-      <Stack.Navigator
-        screenOptions={({ route }) => ({
-          gestureDirection: shouldHideHeader(route) ? 'vertical' : 'horizontal',
-        })}
-      >
+      <Stack.Navigator>
         <Stack.Screen
           name={RouteScreens.OnboardingScreen}
           component={Onboarding}
@@ -56,8 +44,8 @@ const MainRoute = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name={RouteScreens.MapSearchScreen}
-          component={MapSearchScreens}
+          name={RouteScreens.BottomTabRoute}
+          component={BottomTabRoute}
           options={{ headerShown: false }}
         />
         <Stack.Screen
