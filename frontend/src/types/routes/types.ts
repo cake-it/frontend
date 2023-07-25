@@ -7,6 +7,7 @@ export enum RouteScreens {
   LoginScreen = 'LoginScreen',
   CustomScreen = 'CustomScreen',
 
+  BottomTabRoute = 'BottomTabRoute',
   MapSearchScreen = 'MapSearchScreen',
 
   CurationScreen = 'CurationScreen',
@@ -27,6 +28,7 @@ export enum RegisterScreens {
 export type StackParamList = {
   // route
   RegisterRoute: undefined;
+  BottomTabRoute: undefined;
 
   // Screen
   OnboardingScreen: undefined;
