@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Dimensions, View, Image } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { theme } from 'styles/theme';
 import FullInfoComponent from './FullInfoComponent';
@@ -7,8 +7,9 @@ import MiddleInfoComponent from './MiddleInfoComponent';
 
 // 20  - 50 - 100 height
 const { height } = Dimensions.get('window');
-const bottomSheetMinHeight = height * 0.3;
-const bottomSheetPeekHeight = height * 0.5;
+const bottomSheetMinHeight = height * 0.2;
+const bottomSheetPeekHeight =
+  Platform.OS === 'ios' ? height * 0.46 : height * 0.51;
 
 const MapBottomSheet = ({ isFocused }: { isFocused: boolean }) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -40,7 +41,7 @@ const MapBottomSheet = ({ isFocused }: { isFocused: boolean }) => {
     <BottomSheet
       handleIndicatorStyle={indicatorStyle}
       ref={bottomSheetRef}
-      index={1}
+      index={0}
       snapPoints={[bottomSheetMinHeight, bottomSheetPeekHeight, height]}
       style={styles.shadowContainer}
       onChange={handleSheetChange}

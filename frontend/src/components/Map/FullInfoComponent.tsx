@@ -137,7 +137,7 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
 
 export default FullInfoComponent;
 
-const imageSize = Platform.OS === 'ios' ? 240 : 180;
+const imageSize = Platform.OS === 'ios' ? 200 : 140;
 
 const styles = StyleSheet.create({
   container: {
