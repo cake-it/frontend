@@ -11,7 +11,11 @@ import OffCuration from '@assets/images/bottomTab/offCuration.svg';
 import OnCuration from '@assets/images/bottomTab/onCuration.svg';
 import OffMap from '@assets/images/bottomTab/offMap.svg';
 import OnMap from '@assets/images/bottomTab/onMap.svg';
+import OffMyPage from '@assets/images/bottomTab/offMyPage.svg';
+import OnMyPage from '@assets/images/bottomTab/onMyPage.svg';
 import { Platform } from 'react-native';
+import MyPageRoute from './MyPageRoute';
+import CustomText from '@components/router/CustomText';
 
 const BottomTab = createBottomTabNavigator<BottomTabList>();
 
@@ -24,12 +28,6 @@ const BottomTabRoute = () => {
         unmountOnBlur: true,
         tabBarActiveTintColor: theme.pink,
         tabBarInactiveTintColor: '#767676',
-        tabBarLabelStyle: {
-          fontSize: 10,
-          fontFamily: theme.bold,
-          marginBottom: Platform.OS === 'android' ? 17 : 0,
-          bottom: 2,
-        },
         tabBarStyle: {
           height: Platform.OS === 'ios' ? 80 : 70,
         },
@@ -40,20 +38,20 @@ const BottomTabRoute = () => {
         component={MapSearchScreens}
         options={() => ({
           tabBarIcon: ({ focused }) => (focused ? <OnMap /> : <OffMap />),
-          tabBarLabel: '지도',
+          tabBarLabel: ({ focused }) => (
+            <CustomText focused={focused} label="지도" />
+          ),
         })}
       />
-      {/* <BottomTab.Screen
-        name={BottomScreens.BottomReservationScreen}
-        component={ReservationScreen}
-      /> */}
       <BottomTab.Screen
         name={BottomScreens.BottomCurationScreen}
         component={CurationScreen}
         options={() => ({
           tabBarIcon: ({ focused }) =>
             focused ? <OnCuration /> : <OffCuration />,
-          tabBarLabel: '큐레이션',
+          tabBarLabel: ({ focused }) => (
+            <CustomText focused={focused} label="큐레이션" />
+          ),
         })}
       />
       <BottomTab.Screen
@@ -61,16 +59,21 @@ const BottomTabRoute = () => {
         component={CustomScreen}
         options={() => ({
           tabBarIcon: ({ focused }) => (focused ? <OnCustom /> : <OffCustom />),
-          tabBarLabel: '커스텀',
+          tabBarLabel: ({ focused }) => (
+            <CustomText focused={focused} label="커스텀" />
+          ),
         })}
       />
-      {/* <BottomTab.Screen
-        name={BottomScreens.BottomMyPageScreen}
-        component={MyPageScreen}
+      <BottomTab.Screen
+        name={BottomScreens.BottomMyPageRoute}
+        component={MyPageRoute}
         options={() => ({
-          tabBarLabel: '마이페이지',
+          tabBarIcon: ({ focused }) => (focused ? <OnMyPage /> : <OffMyPage />),
+          tabBarLabel: ({ focused }) => (
+            <CustomText focused={focused} label="마이페이지" />
+          ),
         })}
-      /> */}
+      />
     </BottomTab.Navigator>
   );
 };
