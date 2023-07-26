@@ -6,11 +6,21 @@ import Heart from '@assets/images/myPage/heart.svg';
 import Version from '@assets/images/myPage/version.svg';
 import MyPageListItem from './MyPageListItem';
 
-const MyPageList = () => {
+const MyPageList = ({ navigation }: { navigation: any }) => {
+  // 설정 페이지
+  const handleSetting = () => {
+    navigation.navigate('SettingScreen');
+  };
+
+  // 찜 페이지
+  const handleLike = () => {
+    navigation.navigate('LikeListScreen');
+  };
+
   return (
     <View style={styles.wrapper}>
-      <MyPageListItem icon={<Setting />} title="설정" />
-      <MyPageListItem icon={<Heart />} title="찜 목록" />
+      <MyPageListItem icon={<Setting />} title="설정" onPress={handleSetting} />
+      <MyPageListItem icon={<Heart />} title="찜 목록" onPress={handleLike} />
       <MyPageListItem icon={<Version />} title="현재 버전" subtitle="1.0.0" />
 
       {/* VOC 나오면 수정 예정 */}
