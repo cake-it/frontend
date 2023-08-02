@@ -3,6 +3,7 @@ import {
   Platform,
   StyleSheet,
   TextInput,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -56,13 +57,15 @@ const MapSearchComponent = ({
         placeholderTextColor="#b3b3b3"
       />
 
-      {/* API 연결하면서 터치 범위 수정해보기 */}
-      <TouchableWithoutFeedback
+      <TouchableOpacity
+        hitSlop={styles.hit}
+        activeOpacity={1.0}
         disabled={!searchText}
         onPress={handleMoveToLocation}
+        style={styles.icon}
       >
-        <Search style={styles.icon} />
-      </TouchableWithoutFeedback>
+        <Search />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -101,6 +104,12 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    right: 35,
+    right: 28,
+  },
+  hit: {
+    top: 10,
+    bottom: 10,
+    left: 10,
+    right: 10,
   },
 });

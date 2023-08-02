@@ -30,6 +30,7 @@ const BottomTabRoute = () => {
         tabBarInactiveTintColor: '#767676',
         tabBarStyle: {
           height: Platform.OS === 'ios' ? 80 : 70,
+          borderTopWidth: 0.8,
         },
       }}
     >

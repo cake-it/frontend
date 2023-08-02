@@ -44,16 +44,16 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
   }: {
     title: string;
     content: string;
-    color: string;
+    color?: string;
   }) => {
     return (
       <View style={styles.infoView}>
         <Text style={styles.subText}>{title}</Text>
         <Text
           // 이 부분도 나중에 data 받아 올 때 같이 수정 들어가야함
-          numberOfLines={2}
+          numberOfLines={3}
           ellipsizeMode="tail"
-          style={[styles.subText, { color }]}
+          style={[styles.subBlackText, { color }]}
         >
           {content}
         </Text>
@@ -65,7 +65,6 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
     {
       title: '영업시간',
       content: '10:00 - 18:00',
-      color: theme.black,
     },
     {
       title: '전화번호',
@@ -75,13 +74,11 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
     {
       title: '가게소개',
       content:
-        '가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지',
-      color: theme.black,
+        '가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지 가게소개 두줄까지',
     },
     {
       title: '해시태그',
       content: '#레터링케이스 #강남맛집 #생신케이크',
-      color: theme.black,
     },
   ];
 
@@ -107,9 +104,13 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
           <Heart />
         </View>
 
-        <Text style={styles.subText}>별점</Text>
-        <View style={{ flexDirection: 'row', gap: 10, marginTop: 5 }}>
-          <Text style={styles.subText}>4.0</Text>
+        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+          <Text style={[styles.subText, { marginRight: 40 }]}>별점</Text>
+          <Text
+            style={[styles.subText, { color: theme.black, marginRight: 7 }]}
+          >
+            4.0
+          </Text>
           <StarRating stars={4} />
         </View>
 
@@ -126,8 +127,9 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
       <View style={[globalStyles.buttonView, { top: 10 }]}>
         <OnboardingButton
           text="예약"
-          backgroundColor={theme.pink}
-          textColor={theme.white}
+          backgroundColor="#F3F3F3"
+          textColor={theme.black}
+          bottomSheet
           // onPress={() => navigation.navigate('예약화면으로')} 예약화면으로 navigation
         />
       </View>
@@ -137,13 +139,13 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
 
 export default FullInfoComponent;
 
-const imageSize = Platform.OS === 'ios' ? 200 : 140;
+const imageSize = Platform.OS === 'ios' ? 260 : 200;
 
 const styles = StyleSheet.create({
   container: {
     marginLeft: 18,
     marginRight: 18,
-    marginBottom: 13,
+    marginBottom: 15,
   },
   textFlex: {
     flexDirection: 'row',
@@ -152,33 +154,28 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginBottom: 15,
   },
-  detailFlex: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  subTextFlex: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    gap: 15,
-    marginVertical: 5,
-  },
   infoView: {
+    flexDirection: 'row',
     marginTop: 20,
-    gap: 3,
+    gap: 15,
+    width: '80%',
   },
   headText: {
     color: theme.black,
-    fontSize: 24,
+    fontSize: 28,
     fontFamily: theme.bold,
   },
   subText: {
     color: '#6F6F6F',
     fontSize: 14,
+    marginTop: 1.5,
     fontFamily: theme.regular,
   },
-
+  subBlackText: {
+    color: theme.black,
+    fontSize: 16,
+    fontFamily: theme.regular,
+  },
   scrollContainer: {
     marginTop: 20,
     marginLeft: 10,
