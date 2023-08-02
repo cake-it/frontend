@@ -39,7 +39,7 @@ const MiddleInfoComponent = () => {
           {data.map(renderItem)}
         </ScrollView>
 
-        <View style={{ marginRight: 18 }}>
+        <View style={{ marginRight: 18, marginLeft: 8 }}>
           <View style={styles.textFlex}>
             <Text style={styles.headText}>오늘은 윤날</Text>
             <Heart />
@@ -48,7 +48,7 @@ const MiddleInfoComponent = () => {
           <View style={[styles.subTextFlex, { gap: 40 }]}>
             <Text style={styles.subText}>별점</Text>
             <View style={styles.detailFlex}>
-              <Text style={styles.subText}>4.0</Text>
+              <Text style={[styles.subText, { color: theme.black }]}>4.0</Text>
               <StarRating stars={4} />
             </View>
           </View>
@@ -66,8 +66,8 @@ const MiddleInfoComponent = () => {
       <View style={styles.center}>
         <OnboardingButton
           text="예약"
-          backgroundColor={theme.pink}
-          textColor={theme.white}
+          backgroundColor="#F3F3F3"
+          textColor={theme.black}
           bottomSheet
           onPress={() => console.log('예약하기')}
         />
@@ -80,7 +80,7 @@ export default MiddleInfoComponent;
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 18,
+    marginLeft: 10,
     marginBottom: 15,
   },
   textFlex: {
