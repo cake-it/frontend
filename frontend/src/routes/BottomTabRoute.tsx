@@ -11,11 +11,14 @@ import OffCuration from '@assets/images/bottomTab/offCuration.svg';
 import OnCuration from '@assets/images/bottomTab/onCuration.svg';
 import OffMap from '@assets/images/bottomTab/offMap.svg';
 import OnMap from '@assets/images/bottomTab/onMap.svg';
+import OnReservation from '@assets/images/bottomTab/onReservation.svg';
+import OffReservation from '@assets/images/bottomTab/offReservation.svg';
 import OffMyPage from '@assets/images/bottomTab/offMyPage.svg';
 import OnMyPage from '@assets/images/bottomTab/onMyPage.svg';
 import { Platform } from 'react-native';
 import MyPageRoute from './MyPageRoute';
 import CustomText from '@components/router/CustomText';
+import ReservationScreen from '@screens/ReservationScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabList>();
 
@@ -41,6 +44,17 @@ const BottomTabRoute = () => {
           tabBarIcon: ({ focused }) => (focused ? <OnMap /> : <OffMap />),
           tabBarLabel: ({ focused }) => (
             <CustomText focused={focused} label="지도" />
+          ),
+        })}
+      />
+      <BottomTab.Screen
+        name={BottomScreens.BottomReservationScreen}
+        component={ReservationScreen}
+        options={() => ({
+          tabBarIcon: ({ focused }) =>
+            focused ? <OnReservation /> : <OffReservation />,
+          tabBarLabel: ({ focused }) => (
+            <CustomText focused={focused} label="예약" />
           ),
         })}
       />
