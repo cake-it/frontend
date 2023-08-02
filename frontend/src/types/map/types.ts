@@ -14,3 +14,14 @@ export type Region = {
   latitudeDelta: number;
   longitudeDelta: number;
 };
+
+// bottom sheet
+export interface BottomSheetProps {
+  isFocused: boolean;
+  navigation: any;
+}
+
+export interface BottomSheetFullProps {
+  onPress: () => void;
+  navigation: () => void;
+}
