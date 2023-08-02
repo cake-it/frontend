@@ -15,6 +15,7 @@ import { registerStyles } from 'styles/register/styles';
 import Pass from '@assets/images/register/pass.svg';
 import Fail from '@assets/images/register/fail.svg';
 import OnboardingButton from '@components/Common/OnboardingButton';
+import { duplicationCheck } from 'apis/register/duplicationCheck';
 
 const IdInput = ({ navigation }: Props) => {
   const [userId, setUserId] = useState('');
@@ -89,7 +90,14 @@ const IdInput = ({ navigation }: Props) => {
 
           <TouchableOpacity
             disabled={!disabledCheck}
-            onPress={() => console.log('중복확인 API')}
+            onPress={() =>
+              duplicationCheck(userId)
+                .then((res) => console.log(res))
+                .catch((err) => {
+                  console.log('Error Message:', err.message);
+                  // 그 외 추가적인 정보를 출력할 수 있습니다.
+                })
+            }
             activeOpacity={1.0}
             style={duplicateButtonStyle}
           >
