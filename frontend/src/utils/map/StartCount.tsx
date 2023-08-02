@@ -9,5 +9,5 @@ export const StarRating = ({ stars }: { stars: number }) => {
     index < stars ? <Star key={index} /> : <OffStar key={index} />
   );
 
-  return <View style={{ flexDirection: 'row' }}>{starElements}</View>;
+  return <View style={{ flexDirection: 'row', gap: 4 }}>{starElements}</View>;
 };

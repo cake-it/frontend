@@ -3,6 +3,7 @@ export enum RouteScreens {
   OnboardingScreen = 'OnboardingScreen',
 
   RegisterRoute = 'RegisterRoute',
+  MyPageRoute = 'MyPageRoute',
 
   LoginScreen = 'LoginScreen',
   CustomScreen = 'CustomScreen',
@@ -24,11 +25,19 @@ export enum RegisterScreens {
   WelcomeScreen = 'WelcomeScreen',
 }
 
+// MyPage routes
+export enum MyPageScreens {
+  MyPageScreen = 'MyPageScreen',
+  SettingScreen = 'SettingScreen',
+  LikeListScreen = 'LikeListScreen',
+}
+
 // 필요한 파라미터가 없는 상태
 export type StackParamList = {
   // route
   RegisterRoute: undefined;
   BottomTabRoute: undefined;
+  MyPageRoute: undefined;
 
   // Screen
   OnboardingScreen: undefined;
@@ -39,6 +48,10 @@ export type StackParamList = {
   CheckScreen: undefined;
   ProfileScreen: undefined;
   WelcomeScreen: undefined;
+
+  MyPageScreen: undefined;
+  SettingScreen: undefined;
+  LikeListScreen: undefined;
 
   LoginScreen: undefined;
 

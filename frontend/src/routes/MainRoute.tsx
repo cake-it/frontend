@@ -8,6 +8,8 @@ import LoginScreen from '@screens/LoginScreen';
 import CustomScreen from '@screens/CustomScreen';
 import CurationScreen from '@screens/CurationScreen';
 import BottomTabRoute from './BottomTabRoute';
+import MapSearchScreens from '@screens/MapSearchScreens';
+import MyPageRoute from './MyPageRoute';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -44,13 +46,25 @@ const MainRoute = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name={RouteScreens.BottomTabRoute}
-          component={BottomTabRoute}
+          name={RouteScreens.CurationScreen}
+          component={CurationScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name={RouteScreens.CurationScreen}
-          component={CurationScreen}
+          name={RouteScreens.MapSearchScreen}
+          component={MapSearchScreens}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={RouteScreens.MyPageRoute}
+          component={MyPageRoute}
+          options={{ headerShown: false }}
+        />
+
+        {/* 메인 bottom Tab */}
+        <Stack.Screen
+          name={RouteScreens.BottomTabRoute}
+          component={BottomTabRoute}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

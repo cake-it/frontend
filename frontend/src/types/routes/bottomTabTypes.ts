@@ -4,7 +4,7 @@ export type BottomTabList = {
   ReservationScreen: undefined;
   CurationScreen: undefined;
   CustomScreen: undefined;
-  MyPageScreen: undefined;
+  MyPageRoute: undefined;
 };
 
 export enum BottomScreens {
@@ -12,5 +12,11 @@ export enum BottomScreens {
   BottomReservationScreen = 'ReservationScreen',
   BottomCurationScreen = 'CurationScreen',
   BottomCustomScreen = 'CustomScreen',
-  BottomMyPageScreen = 'MyPageScreen',
+  BottomMyPageRoute = 'MyPageRoute',
+}
+
+// custom label
+export interface LabelProps {
+  focused: boolean;
+  label: string;
 }
