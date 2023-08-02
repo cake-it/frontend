@@ -16,3 +16,12 @@ export interface MyPageModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   modalType: string;
 }
+
+// Like Component Type
+export interface LikeComponentProps {
+  title: string;
+  star: number;
+  time: string;
+  location: string;
+  bottom: any;
+}
