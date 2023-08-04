@@ -14,3 +14,10 @@ export type Region = {
   latitudeDelta: number;
   longitudeDelta: number;
 };
+
+export interface BottomSheetProps {
+  isFocused: boolean;
+  markerPressed: boolean;
+  setSelectedMarkerIndex: Dispatch<SetStateAction<number>>;
+  setMarkerPressed: Dispatch<SetStateAction<boolean>>;
+}
