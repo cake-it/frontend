@@ -73,7 +73,8 @@ const MapSearchComponent = ({
 export default MapSearchComponent;
 
 // 검색창 높이 OS 사이즈 분기처리
-const searchVertical = Platform.OS === 'ios' ? 60 : 40;
+const searchTop = Platform.OS === 'ios' ? 60 : 40;
+const bottom = Platform.OS === 'ios' ? 12 : 17;
 
 const styles = StyleSheet.create({
   searchView: {
@@ -81,16 +82,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     position: 'absolute',
-    alignItems: 'center',
   },
   searchInput: {
-    marginTop: searchVertical,
+    marginTop: searchTop,
     backgroundColor: theme.white,
     paddingHorizontal: 20,
     width: '95%',
     padding: 15,
     borderRadius: 10,
-    alignSelf: 'center',
     fontSize: 16,
     fontFamily: theme.regular,
     color: '#AAAAAA',
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    bottom: 12,
+    bottom: bottom,
     right: 28,
   },
   hit: {
