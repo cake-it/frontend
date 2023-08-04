@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    bottom: 10,
+    bottom: 12,
     right: 28,
   },
   hit: {
