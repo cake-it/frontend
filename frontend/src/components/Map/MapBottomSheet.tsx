@@ -4,14 +4,19 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { theme } from 'styles/theme';
 import FullInfoComponent from './FullInfoComponent';
 import MiddleInfoComponent from './MiddleInfoComponent';
+import { BottomSheetProps } from 'types/map/types';
 
-// 20  - 50 - 100 height
+// 0  - 50 - 100 height
 const { height } = Dimensions.get('window');
-const bottomSheetMinHeight = height * 0.2;
 const bottomSheetPeekHeight =
   Platform.OS === 'ios' ? height * 0.46 : height * 0.51;
 
-const MapBottomSheet = ({ isFocused }: { isFocused: boolean }) => {
+const MapBottomSheet = ({
+  isFocused,
+  markerPressed,
+  setSelectedMarkerIndex,
+  setMarkerPressed,
+}: BottomSheetProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -24,31 +29,42 @@ const MapBottomSheet = ({ isFocused }: { isFocused: boolean }) => {
   // snapPoint changes
   const handleSheetChange = useCallback((index: number) => {
     // console.log('handleSheetChange', index);
-    index === 2 ? setIsFullScreen(true) : setIsFullScreen(false);
+    index === 1 ? setIsFullScreen(true) : setIsFullScreen(false);
   }, []);
 
-  // props로 내려줄 함수
+  // full screen에 props로 내려줄 함수
   const handleSnapPress = useCallback((index: number) => {
     bottomSheetRef.current?.snapToIndex(index);
   }, []);
 
-  // 검색창에 focus 되면 bottomSheet 내려주기
+  // 검색창에 focus 되면 bottomSheet 내려주고 마커 해제
   useEffect(() => {
-    if (isFocused) bottomSheetRef.current?.snapToIndex(0);
+    if (isFocused) {
+      setSelectedMarkerIndex(-1);
+      setMarkerPressed(false);
+      bottomSheetRef.current?.close();
+    }
   }, [isFocused]);
+
+  // 마커 클릭/언클릭 bottomSheet 내리고 올리기
+  useEffect(() => {
+    markerPressed
+      ? bottomSheetRef.current?.snapToIndex(0)
+      : bottomSheetRef.current?.close();
+  }, [markerPressed]);
 
   return (
     <BottomSheet
       handleIndicatorStyle={indicatorStyle}
+      index={-1}
       ref={bottomSheetRef}
-      index={0}
-      snapPoints={[bottomSheetMinHeight, bottomSheetPeekHeight, height]}
+      snapPoints={[bottomSheetPeekHeight, height]}
       style={styles.shadowContainer}
       onChange={handleSheetChange}
     >
       {/* 풀스크린으로 올렸을 때 */}
       {isFullScreen ? (
-        <FullInfoComponent onPress={() => handleSnapPress(1)} />
+        <FullInfoComponent onPress={() => handleSnapPress(0)} />
       ) : (
         // 50% 이하
         <MiddleInfoComponent />
