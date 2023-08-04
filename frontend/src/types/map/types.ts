@@ -21,3 +21,13 @@ export interface BottomSheetProps {
   setSelectedMarkerIndex: Dispatch<SetStateAction<number>>;
   setMarkerPressed: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface LocationButtonProps {
+  onPress: () => void;
+  markerPressed: boolean;
+}
+
+export interface Position {
+  latitude: number;
+  longitude: number;
+}
