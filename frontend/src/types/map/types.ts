@@ -15,10 +15,22 @@ export type Region = {
   longitudeDelta: number;
 };
 
-// bottom sheet
 export interface BottomSheetProps {
   isFocused: boolean;
+  markerPressed: boolean;
+  setSelectedMarkerIndex: Dispatch<SetStateAction<number>>;
+  setMarkerPressed: Dispatch<SetStateAction<boolean>>;
   navigation: any;
+}
+
+export interface LocationButtonProps {
+  onPress: () => void;
+  markerPressed: boolean;
+}
+
+export interface Position {
+  latitude: number;
+  longitude: number;
 }
 
 export interface BottomSheetFullProps {

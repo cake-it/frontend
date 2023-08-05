@@ -6,13 +6,18 @@ import FullInfoComponent from './FullInfoComponent';
 import MiddleInfoComponent from './MiddleInfoComponent';
 import { BottomSheetProps } from 'types/map/types';
 
-// 20  - 50 - 100 height
+// 0  - 50 - 100 height
 const { height } = Dimensions.get('window');
-const bottomSheetMinHeight = height * 0.2;
 const bottomSheetPeekHeight =
   Platform.OS === 'ios' ? height * 0.46 : height * 0.51;
 
-const MapBottomSheet = ({ isFocused, navigation }: BottomSheetProps) => {
+const MapBottomSheet = ({
+  isFocused,
+  markerPressed,
+  setSelectedMarkerIndex,
+  setMarkerPressed,
+  navigation,
+}: BottomSheetProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -25,19 +30,29 @@ const MapBottomSheet = ({ isFocused, navigation }: BottomSheetProps) => {
   // snapPoint changes
   const handleSheetChange = useCallback((index: number) => {
     // console.log('handleSheetChange', index);
-    index === 2 ? setIsFullScreen(true) : setIsFullScreen(false);
+    index === 1 ? setIsFullScreen(true) : setIsFullScreen(false);
   }, []);
 
-  // props로 내려줄 함수
+  // full screen에 props로 내려줄 함수
   const handleSnapPress = useCallback((index: number) => {
     bottomSheetRef.current?.snapToIndex(index);
   }, []);
 
-  // 검색창에 focus 되면 bottomSheet 내려주기
+  // 검색창에 focus 되면 bottomSheet 내려주고 마커 해제
   useEffect(() => {
-    if (isFocused) bottomSheetRef.current?.snapToIndex(0);
+    if (isFocused) {
+      setSelectedMarkerIndex(-1);
+      setMarkerPressed(false);
+      bottomSheetRef.current?.close();
+    }
   }, [isFocused]);
 
+  // 마커 클릭/언클릭 bottomSheet 내리고 올리기
+  useEffect(() => {
+    markerPressed
+      ? bottomSheetRef.current?.snapToIndex(0)
+      : bottomSheetRef.current?.close();
+  }, [markerPressed]);
   // 예약 페이지 이동
   const handleReservation = () => {
     navigation.navigate('ReservationScreen');
@@ -46,9 +61,9 @@ const MapBottomSheet = ({ isFocused, navigation }: BottomSheetProps) => {
   return (
     <BottomSheet
       handleIndicatorStyle={indicatorStyle}
+      index={-1}
       ref={bottomSheetRef}
-      index={0}
-      snapPoints={[bottomSheetMinHeight, bottomSheetPeekHeight, height]}
+      snapPoints={[bottomSheetPeekHeight, height]}
       style={styles.shadowContainer}
       onChange={handleSheetChange}
     >
@@ -56,7 +71,7 @@ const MapBottomSheet = ({ isFocused, navigation }: BottomSheetProps) => {
       {isFullScreen ? (
         <FullInfoComponent
           navigation={handleReservation}
-          onPress={() => handleSnapPress(1)}
+          onPress={() => handleSnapPress(0)}
         />
       ) : (
         // 50% 이하

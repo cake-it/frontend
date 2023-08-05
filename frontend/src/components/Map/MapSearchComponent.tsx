@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import React from 'react';
@@ -22,6 +21,9 @@ const MapSearchComponent = ({
 }: MapSearchComponentProps) => {
   // 검색한 위치로 이동
   const handleMoveToLocation = async () => {
+    // 검색어 초기화
+    setSearchText('');
+
     try {
       const response = await fetch(
         `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=${GOOGLE_PLACE_API_KEY}&input=${encodeURIComponent(
@@ -36,10 +38,8 @@ const MapSearchComponent = ({
         latitudeDelta: delta,
         longitudeDelta: delta,
       };
-
-      setRegion(newRegion);
-      setSearchText('');
       Keyboard.dismiss();
+      setRegion(newRegion);
     } catch (error) {
       console.error('Error searching for location:', error);
     }
@@ -73,7 +73,8 @@ const MapSearchComponent = ({
 export default MapSearchComponent;
 
 // 검색창 높이 OS 사이즈 분기처리
-const searchVertical = Platform.OS === 'ios' ? 60 : 40;
+const searchTop = Platform.OS === 'ios' ? 60 : 40;
+const bottom = Platform.OS === 'ios' ? 12 : 17;
 
 const styles = StyleSheet.create({
   searchView: {
@@ -81,16 +82,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     position: 'absolute',
-    alignItems: 'center',
   },
   searchInput: {
-    marginVertical: searchVertical,
+    marginTop: searchTop,
     backgroundColor: theme.white,
     paddingHorizontal: 20,
     width: '95%',
     padding: 15,
     borderRadius: 10,
-    alignSelf: 'center',
     fontSize: 16,
     fontFamily: theme.regular,
     color: '#AAAAAA',
@@ -104,6 +103,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
+    bottom: bottom,
     right: 28,
   },
   hit: {
