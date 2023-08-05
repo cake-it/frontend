@@ -18,6 +18,7 @@
 		7BC596A713224325BACF9D29 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C339E8353134D178120A537 /* Pretendard-Bold.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CB1011752A67B78500A4AA3B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1011742A67B78500A4AA3B /* File.swift */; };
+		CBAD23CC2A7DF6D2009ADD00 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBAD23CE2A7DF6D2009ADD00 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		CB1011732A67B78500A4AA3B /* frontend-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "frontend-Bridging-Header.h"; sourceTree = "<group>"; };
 		CB1011742A67B78500A4AA3B /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		CBA528F52A67A8E50062A2CF /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		CBAD23CD2A7DF6D2009ADD00 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CBAD23CE2A7DF6D2009ADD00 /* InfoPlist.strings */,
 				CBA528F52A67A8E50062A2CF /* Config.xcconfig */,
 				13B07FAE1A68108700A75B9A /* frontend */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -242,6 +245,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -267,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				CBAD23CC2A7DF6D2009ADD00 /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				7BC596A713224325BACF9D29 /* Pretendard-Bold.otf in Resources */,
 				3B66BDEDD2914FC699F77E07 /* Pretendard-Medium.otf in Resources */,
@@ -454,6 +459,18 @@
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CBAD23CE2A7DF6D2009ADD00 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBAD23CD2A7DF6D2009ADD00 /* ko */,
+			);
+			name = InfoPlist.strings;
+			path = frontend;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
