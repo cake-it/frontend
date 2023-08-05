@@ -4,6 +4,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { theme } from 'styles/theme';
 import FullInfoComponent from './FullInfoComponent';
 import MiddleInfoComponent from './MiddleInfoComponent';
+import { BottomSheetProps } from 'types/map/types';
 
 // 20  - 50 - 100 height
 const { height } = Dimensions.get('window');
@@ -11,7 +12,7 @@ const bottomSheetMinHeight = height * 0.2;
 const bottomSheetPeekHeight =
   Platform.OS === 'ios' ? height * 0.46 : height * 0.51;
 
-const MapBottomSheet = ({ isFocused }: { isFocused: boolean }) => {
+const MapBottomSheet = ({ isFocused, navigation }: BottomSheetProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -37,6 +38,11 @@ const MapBottomSheet = ({ isFocused }: { isFocused: boolean }) => {
     if (isFocused) bottomSheetRef.current?.snapToIndex(0);
   }, [isFocused]);
 
+  // 예약 페이지 이동
+  const handleReservation = () => {
+    navigation.navigate('ReservationScreen');
+  };
+
   return (
     <BottomSheet
       handleIndicatorStyle={indicatorStyle}
@@ -48,10 +54,13 @@ const MapBottomSheet = ({ isFocused }: { isFocused: boolean }) => {
     >
       {/* 풀스크린으로 올렸을 때 */}
       {isFullScreen ? (
-        <FullInfoComponent onPress={() => handleSnapPress(1)} />
+        <FullInfoComponent
+          navigation={handleReservation}
+          onPress={() => handleSnapPress(1)}
+        />
       ) : (
         // 50% 이하
-        <MiddleInfoComponent />
+        <MiddleInfoComponent onPress={handleReservation} />
       )}
     </BottomSheet>
   );

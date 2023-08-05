@@ -98,7 +98,7 @@ const MapSearchScreens = ({ navigation }: Props) => {
         />
 
         {/* BottomSheet */}
-        <MapBottomSheet isFocused={isFocused} />
+        <MapBottomSheet navigation={navigation} isFocused={isFocused} />
       </GestureHandlerRootView>
     </View>
   );
