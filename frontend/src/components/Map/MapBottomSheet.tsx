@@ -16,6 +16,7 @@ const MapBottomSheet = ({
   markerPressed,
   setSelectedMarkerIndex,
   setMarkerPressed,
+  navigation,
 }: BottomSheetProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -52,6 +53,10 @@ const MapBottomSheet = ({
       ? bottomSheetRef.current?.snapToIndex(0)
       : bottomSheetRef.current?.close();
   }, [markerPressed]);
+  // 예약 페이지 이동
+  const handleReservation = () => {
+    navigation.navigate('ReservationScreen');
+  };
 
   return (
     <BottomSheet
@@ -64,10 +69,13 @@ const MapBottomSheet = ({
     >
       {/* 풀스크린으로 올렸을 때 */}
       {isFullScreen ? (
-        <FullInfoComponent onPress={() => handleSnapPress(0)} />
+        <FullInfoComponent
+          navigation={handleReservation}
+          onPress={() => handleSnapPress(0)}
+        />
       ) : (
         // 50% 이하
-        <MiddleInfoComponent />
+        <MiddleInfoComponent onPress={handleReservation} />
       )}
     </BottomSheet>
   );

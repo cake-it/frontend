@@ -7,7 +7,7 @@ import OnboardingButton from '@components/Common/OnboardingButton';
 import { ScrollView } from 'react-native-gesture-handler';
 
 // 50% 이하의 bottomSheet 일 때
-const MiddleInfoComponent = () => {
+const MiddleInfoComponent = ({ onPress }: { onPress: () => void }) => {
   // 임시 데이터 (추후 백엔드에서 받아옴)
   // 해당 코드 추후 받는 데이터에 따라서 코드 클린하게 수정하기
   const data = [
@@ -69,7 +69,7 @@ const MiddleInfoComponent = () => {
           backgroundColor="#F3F3F3"
           textColor={theme.black}
           bottomSheet
-          onPress={() => console.log('예약하기')}
+          onPress={onPress}
         />
       </View>
     </View>

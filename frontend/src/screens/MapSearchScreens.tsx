@@ -11,6 +11,9 @@ import DefaultMarker from '@assets/images/map/marker.svg';
 import PointMarker from '@assets/images/map/pointMarker.svg';
 import { requestPermission } from 'hooks/locationRequestPermission';
 import LocationButton from '@components/Map/LocationButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from 'types/routes/types';
+export type Props = NativeStackScreenProps<StackParamList, 'MapSearchScreen'>;
 
 // 마커 임시 데이터
 const markersData = [
@@ -20,7 +23,7 @@ const markersData = [
   { latitude: 37.5113961, longitude: 127.0939363 },
 ];
 
-const MapSearchScreens = () => {
+const MapSearchScreens = ({ navigation }: Props) => {
   const mapView = useRef<any>(null);
   const [region, setRegion] = useState<Region | null>(null);
   const [selectedMarkerIndex, setSelectedMarkerIndex] = useState(-1);
@@ -161,6 +164,7 @@ const MapSearchScreens = () => {
           setSelectedMarkerIndex={setSelectedMarkerIndex}
           markerPressed={markerPressed}
           isFocused={isFocused}
+          navigation={navigation}
         />
       </GestureHandlerRootView>
     </View>

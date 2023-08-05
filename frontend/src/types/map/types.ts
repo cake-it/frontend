@@ -20,6 +20,7 @@ export interface BottomSheetProps {
   markerPressed: boolean;
   setSelectedMarkerIndex: Dispatch<SetStateAction<number>>;
   setMarkerPressed: Dispatch<SetStateAction<boolean>>;
+  navigation: any;
 }
 
 export interface LocationButtonProps {
@@ -30,4 +31,9 @@ export interface LocationButtonProps {
 export interface Position {
   latitude: number;
   longitude: number;
+}
+
+export interface BottomSheetFullProps {
+  onPress: () => void;
+  navigation: () => void;
 }

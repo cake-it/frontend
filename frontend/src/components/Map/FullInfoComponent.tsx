@@ -14,8 +14,9 @@ import Header from '@components/Common/Header';
 import OnboardingButton from '@components/Common/OnboardingButton';
 import { globalStyles } from 'styles/global';
 import { ScrollView } from 'react-native-gesture-handler';
+import { BottomSheetFullProps } from 'types/map/types';
 
-const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
+const FullInfoComponent = ({ onPress, navigation }: BottomSheetFullProps) => {
   // 임시 데이터 (추후 백엔드에서 받아옴)
   const data = [
     require('@assets/images/map/example.png'),
@@ -130,7 +131,7 @@ const FullInfoComponent = ({ onPress }: { onPress: () => void }) => {
           backgroundColor="#F3F3F3"
           textColor={theme.black}
           bottomSheet
-          // onPress={() => navigation.navigate('예약화면으로')} 예약화면으로 navigation
+          onPress={navigation}
         />
       </View>
     </SafeAreaView>
