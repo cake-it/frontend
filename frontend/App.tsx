@@ -7,6 +7,7 @@
 
 import React, { useEffect } from 'react';
 import { Platform, StatusBar } from 'react-native';
+import { RecoilRoot } from 'recoil';
 import MainRoute from 'routes/MainRoute';
 
 const App = () => {
@@ -15,7 +16,11 @@ const App = () => {
     StatusBar.setBarStyle(Platform.OS === 'ios' ? 'dark-content' : 'default');
   }, []);
 
-  return <MainRoute />;
+  return (
+    <RecoilRoot>
+      <MainRoute />
+    </RecoilRoot>
+  );
 };
 
 export default App;
